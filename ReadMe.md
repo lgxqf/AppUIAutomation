@@ -5,7 +5,7 @@
 ![](https://github.com/lgxqf/AppUIAutomation/blob/master/doc/structure.png)
 
 
-##设计理念
+## 设计理念
 * 该框架适用于同一个APP, Android和iOS UI结构基本一致的情况
 * 应用Page Object模式提高UI页面操作代码的复用度
 * 用Driver类封装所有用到的Appium API, 框架中其它类只通过Driver调用Appium的方法，这种作法会有以下两点好处：
