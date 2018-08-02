@@ -1,0 +1,30 @@
+#login layout
+LOGIN_PAGE_PHONE_TEXT_ID: com.xes.jazhanghui.activity:id/xes_login_username
+LOGIN_PAGE_PASSWORD_TEXT_ID: com.xes.jazhanghui.activity:id/xes_login_password
+LOGIN_PAGE_LOGIN_BUTTON_ID: com.xes.jazhanghui.activity:id/xes_login_button
+TAB_MY_PAGE_LOGIN_BUTTON_ID: com.xes.jazhanghui.activity:id/tv_user_center_top_name
+
+#Login Page
+WC_LOGIN_PAGE_PHONE_TEXT_XPATH: '//*[@text="输入手机号"]'
+WC_LOGIN_PAGE_PASSWORD_TEXT_XPATH: '//*[@text="输入密码" or @text="••••"]'
+WC_LOGIN_PAGE_LOGIN_BUTTON_XPATH: '//*[@text="登录" or @content-desc="登录"]'
+
+
+
+#Main Page
+WC_MAIN_PAGE_MYCLASS_TXT_XPATH: '//*[@text="我的课程"]'
+WC_MAIN_PAGE_ENTER_CLASS_BTN_XPATH: '//*[@text="进入教室"]'
+
+#Class Page
+WC_CLASS_PAGE_ALWAYS_ALLOW_BTN_XPATH: '//*[@text="始终允许"]'
+WC_CLASS_PAGE_NOTICE_BAR_TXT_ID: 'com.weclassroom.fcclassroomapp:id/text_view_notice_bar'
+
+WC_CLASS_PAGE_HAND_UP_BTN_ID: 'com.weclassroom.fcclassroomapp:id/img_hand_up'
+WC_CLASS_PAGE_INPUT_BTN_ID: 'com.weclassroom.fcclassroomapp:id/img_chat_input_tag'
+WC_CLASS_PAGE_MSG_TEXT_ID: 'com.weclassroom.fcclassroomapp:id/edit_text_chat'
+WC_CLASS_PAGE_MSG_SEND_BTN_ID: 'com.weclassroom.fcclassroomapp:id/text_btn_send'
+
+
+
+#Common
+CONFIRM_XPATH: '//*[@text="确定"]'

@@ -1,0 +1,2 @@
+#欢迎页面 WelcomePage
+WELCOME_PAGE_LOGIN_BUTTON_ID: name == '登 录'

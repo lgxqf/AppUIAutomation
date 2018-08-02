@@ -1,0 +1,44 @@
+# 一些通用设置，通常不需要修改
+GENERAL:
+  DEFAULT_PAGE_FACTORY_WAIT_SEC: 20
+  # 查找元素的最长时延
+  DEFAULT_WAIT_SEC: 20
+  # 每隔多少秒查找一次元素
+  DEFAULT_POLLING_INTERVAL_SEC: 6
+  # 用例运行失败时最多重试运行次数
+  RETRY_COUNT: 2
+
+# 运行用例的默认设备
+DEFAULT_DEVICE:
+  # 是否开启默认设备，false时需要传入相应的task的yml配置
+  # true时只在指定的UDID设备上运行用例
+  DEFAULT_DEVICE_ENABLE: true
+  UDID: SJE0217B29005225
+  APPIUM_PORT: 4723
+  IOS_WDA_PORT: 8001
+
+# 一些运行时需要设置的值
+RUN_TEST_CONIFG:
+  # Android 包名
+  ANDROID_PACKAGE: com.weclassroom.fcclassroomapp
+  # APK启动时的主活动
+  ANDROID_MAIN_ACTIVITY: com.weclassroom.fcclassroomapp.ui.activity.SplashActivity
+  # iOS bundle ID
+  IOS_BUNDLEID: com.xes.studentClient
+  # Appium server 地址
+  APPIUM_SERVER_IP: 0.0.0.0
+  # 一些自定义的额外的设置, 可省略
+  ADDITION_CONIG:
+    - WECLASS_CONIFG
+
+WECLASS_CONIFG:
+  #以分钟为单位
+  WC_PERFORMANCE_TIME: 120
+  WC_PERFORMANCE_CLASSROOM_STAYTIME: 15
+
+#设备相关信息
+SJE0217B29005225:
+  #设备名字
+  DEVICE_NAME: HUAWEI
+  WC_USER: 111
+  WC_PASSWORD: 111
