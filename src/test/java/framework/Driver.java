@@ -37,21 +37,6 @@ public final class Driver {
         return ConfigUtil.getUdid().length() < 20;
     }
 
-    public static void switchTo(){
-        driver.switchTo();
-    }
-
-    public static void ios_launchApp(){
-        driver.launchApp();
-        Driver.sleep(APP_START_WAIT_TIME);
-    }
-
-    public static void appRelaunch(StringBuilder builder){
-        builder.append("RESTART : "+APP_START_WAIT_TIME +"\n");
-
-        appRelaunch();
-    }
-
     public static void appRelaunch(){
         log.info("Restart app...");
 
@@ -171,28 +156,6 @@ public final class Driver {
         }
     }
 
-
-    //====================Element operation========================
-    public static void inputPassword(WebElement elem, String text){
-        log.info(Util.getMethodName() + " " + text);
-
-        if(!isAndroid()) {
-            log.info("Input password " + text + " for ios");
-            //目前iOS只支持输入6个1，因为找不到输密码对话框的ID,只能点键盘输入
-            for(int i = 0;i < 6 ;i++){
-                elem.click();
-            }
-        }
-        else{
-            elem.click();
-            //经常会输入不完 先随便输个数 然后等待一段时间后 再重新输入一次
-            elem.sendKeys("1111");//因为清除不干净，实际密码需设置成相同数字串"111111"。by Jack Si
-            Driver.sleep(1);
-            elem.sendKeys(text);
-            Driver.sleep(1);
-        }
-    }
-
     public static void setText(MobileElement elem,String text){
         log.info(Util.getMethodName() + " " + text);
 
@@ -212,10 +175,6 @@ public final class Driver {
 
     public static int getDeviceHeight(){
         log.info(Util.getMethodName());
-//        log.info(util.Util.getMethodName());
-//
-//        Dimension dimensions = driver.manage().window().getSize();
-//        return dimensions.getHeight();
 
         if(isLandscape()){
             return deviceWidth;
@@ -226,14 +185,11 @@ public final class Driver {
 
     public static int getDeviceWidth(){
         log.info(Util.getMethodName());
-//        log.info(util.Util.getMethodName());
-//
-//        Dimension dimensions = driver.manage().window().getSize();
-//        return dimensions.getWidth();
-        //if(driver.getOrientation().equals(ScreenOrientation.LANDSCAPE)){
+
         if(isLandscape()){
             return deviceHeight;
         }
+
         return deviceWidth;
     }
 
@@ -441,18 +397,6 @@ public final class Driver {
         return elemList;
     }
 
-//    public static List<MobileElement> findElementsById(String str){
-//        log.info(util.Util.getMethodName() + " " + str);
-////
-////        if(util.isAndroid()){
-////            return driver.findElements(By.id(str));
-////        }
-////
-////        return  ((IOSDriver) driver).findElementsByIosNsPredicate(str);
-//
-//        return util.Driver.findElements(By.id(str),util.ConfigUtil.DEFAULT_WAIT_SEC);
-//    }
-
     public static List<MobileElement> findElements(By by){
         log.info(Util.getMethodName() + by);
 
@@ -477,7 +421,6 @@ public final class Driver {
         return  findElement(by,(int) ConfigUtil.getDefaultWaitSec());
     }
 
-
     public static MobileElement findElementWithoutException(By by){
        return findElementWithoutException(by,ConfigUtil.getDefaultWaitSec());
     }
@@ -493,12 +436,11 @@ public final class Driver {
         return elem;
     }
 
-
-        /**
-         * 查找元素，如果元素不存在，不报异常，返回null
-         * @param id
-         * @return
-         */
+    /**
+     * 查找元素，如果元素不存在，不报异常，返回null
+     * @param id
+     * @return
+     */
     public static MobileElement findElemByIdWithoutException(String id, int second){
         log.info(Util.getMethodName() );
 
@@ -519,7 +461,7 @@ public final class Driver {
     }
 
     public static MobileElement findElemByIdWithoutException(String id){
-        return findElemByIdWithoutException(id,(int) ConfigUtil.getDefaultWaitSec());
+        return findElemByIdWithoutException(id, ConfigUtil.getDefaultWaitSec());
     }
 
     /**
@@ -530,7 +472,7 @@ public final class Driver {
     public static boolean elemCheckById(String id){
         log.info(Util.getMethodName() );
 
-        return elemCheckById(id, (int) ConfigUtil.getDefaultWaitSec());
+        return elemCheckById(id, ConfigUtil.getDefaultWaitSec());
     }
 
     public static boolean elemCheckById(String id, int second){
@@ -590,7 +532,6 @@ public final class Driver {
             if(!isAndroid()){
                 elem = Driver.findElementByNsPredicateIOS(id);
             }else {
-                //scrollToElementById(id) ;
                 By by = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView("
                         + "new UiSelector().resourceId(\"" + id + "\"));");
                 elem = Driver.findElement(by);
@@ -621,9 +562,6 @@ public final class Driver {
         log.info(id + " " + ret);
         return ret;
     }
-
-
-
 
     public static MobileElement findElementByXpath(String xPath){
         log.info(Util.getMethodName() + xPath);
@@ -683,19 +621,6 @@ public final class Driver {
         return findElement(MobileBy.iOSNsPredicateString(str), seconds);
     }
 
-
-//
-//    public static void iterateElementsById(String str){
-//
-//        List<MobileElement> list = util.Driver.findElementsById(str);
-//
-//        log.info("iterateElement with : " + str + " size is " +list.size());
-//
-//        for(MobileElement e :list){
-//            log.info(e.getText());
-//        }
-//    }
-
     public static MobileElement getFirstbyPredicateIOS(String str){
         MobileElement elem;
 
@@ -715,19 +640,6 @@ public final class Driver {
     public static String getTextByXpath(String xPath){
         return findElementByXpath(xPath).getText();
     }
-
-    public static String getXpathByResID(String resId){
-        return  getXpathByResID(resId,"com.tigerbrokers.stock:id/edit_number");
-    }
-
-    public static String getXpathByResID(String resId, String subResID){
-        return "//*[contains(@resource-id,\"" + resId + "\")]//*[contains(@resource-id,\""+ subResID +"\")]";
-    }
-
-    public static String getXpathByClassID(String resId, String classId){
-        return "//*[contains(@resource-id,\"" + resId + "\")]//*[contains(@class,\""+ classId +"\")]";
-    }
-
 
     /**
      * 滑动到指定元素id的位置
@@ -999,8 +911,6 @@ public final class Driver {
 
         try {
             TouchAction touchAction = new TouchAction(driver);
-            //touchAction.press(PointOption.point(x,y)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(100))).release().perform();
-            //touchAction.tap(PointOption.point(x,y)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(100))).release().perform();
             touchAction.tap(PointOption.point(x, y)).perform();
         }catch (Exception e){
             e.printStackTrace();
@@ -1197,14 +1107,6 @@ public final class Driver {
         if(builder != null){
             builder.append("SWIPE : " + startX +"," + startY + "," + endX + "," +endY+"\n");
         }
-//        TouchAction touchAction = new TouchAction(driver);
-//        PointOption pointStart = PointOption.point(startX,startY);
-//        PointOption pointEnd = PointOption.point(startX,endY);
-//        touchAction.press(pointStart).waitAction(WaitOptions.waitOptions(Duration.ofMillis(400))).moveTo(pointEnd).release().perform();
-
-//        int endX = startX;
-//        int endY = startY + yDiff;
-//        driver.swipe(startX,startY,endX,endY,500);
     }
 
     public static void swipeHorizontally(boolean leftToRight) {
@@ -1228,11 +1130,6 @@ public final class Driver {
 
         int startY = screenHeight / 2;
         int endY = startY;
-
-//        startX = 0;
-//        endX = 100;
-//        startY = 100;
-//        endY = 100;
 
         if(!isAndroid()){
             //TODO: 解决ios 相对坐标问题，  升级Java-client版本？？？

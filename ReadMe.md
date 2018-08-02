@@ -8,8 +8,7 @@
 ##设计理念
 * 该框架适用于同一个APP, Android和iOS UI结构基本一致的情况
 * 应用Page Object模式提高UI页面操作代码的复用度
-* 用Driver类封装所有用到的Appium API, 框架中其它类只通过Driver调用Appium的方法
-* 用Driver类封装用到Appium API有以下两点好处：
+* 用Driver类封装所有用到的Appium API, 框架中其它类只通过Driver调用Appium的方法，这种作法会有以下两点好处：
 *      一、屏蔽对Appium API的依赖，如果Appium的某个API官方废弃了，只需修改Driver类封装的相应方法即可
 *      二、如果将Appium换成Macaca或其它框架，除了改动Driver类 其它类无需改动
 * 在Driver中用findElementById等封装对iOS和Android的元素查找，提高代码的复用，尽可能的避免iOS与Android因查找元素方式不同而写相似的代码
