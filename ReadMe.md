@@ -55,8 +55,12 @@
 </suite>
 ```
 
+## 如何运行
+* 方式一  打成Jar包 然后运行命令 java -jar UIAutomation-1.0-fat-tests  ./task/demo.yml
+* 方式2  Idea中 右键单击demo.yml 选择运行
+![](https://github.com/lgxqf/AppUIAutomation/blob/master/doc/Run-By-IDEA.png)
 
-# 参考文档
+## 参考文档
 * Page Object
 * How can I configure the maven shade plugin to include test code in my jar?
 https://code.i-harness.com/en/q/4e91ca
