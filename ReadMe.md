@@ -1,6 +1,6 @@
 # APP UI Automation Framework
 
-![](https://github.com/lgxqf/UICrawler/blob/master/doc/picToMov.gif)
+![](https://github.com/lgxqf/AppUIAutomation/blob/master/doc/structure.png)
 
 该框架适用情况：同一个APP, Android和iOS UI结构基本一致
 
