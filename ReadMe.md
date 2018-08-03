@@ -46,13 +46,13 @@
 
 ## 配置文件 
 * Config.yml 运行测试时的一些配置项 如包名，重试次数等等。 详见Config.ym内的l注释
-* Android 查找找查元素时用到的字符串 如： LOGIN_PAGE_PHONE_TEXT_ID: com.xes.jazhanghui.activity:id/xes_login_username
-* iOS 查找元素时用到的字符串 如： LOGIN_PAGE_PHONE_TEXT_ID: name == '用户名'
+
 
 ## 资源文件（具体使用方法见demo）
 * 为每个元素新建一个便于辨识的名字，用这个名字统一Android/iOS待查找元素, 然后将不同系统找中该名字的元素对应的值写入相应的RES.yml中
-* AndroidRES.yml 写入Android元素的查找时需要用到的值
-* IOSRES.yml 写入iOS元素的查找时需要用到的值
+* AndroidRES.yml 写入Android元素查找时需要用到的值
+* IOSRES.yml 写入iOS元素查找时需要用到的值
+
 
 ## 测试用例集 
 * 框架通过读取 task目录下的yml 运行指定的测试用例
