@@ -5,13 +5,26 @@
 ![](https://github.com/lgxqf/AppUIAutomation/blob/master/doc/structure.png)
 
 
+## 基本功能
+* 通过yml配置待执行的测试用例
+* 通过yml指定待执行测试的设备及Appium端口
+* 用例执行失败自动重试，且重试次数可配置
+* 用例执行失败时自动截图
+* 生成测试报告(NGReport)
+* 支持自定义配置项
+
+
+## 设计目标
+* 用一套代码执行Android/iOS测试用例
+
+
 ## 设计理念
-* 该框架适用于同一个APP, Android和iOS UI结构基本一致的情况
 * 应用Page Object模式提高UI页面操作代码的复用度
 * 用Driver类封装所有用到的Appium API, 框架中其它类只通过Driver调用Appium的方法，这种作法会有以下两点好处：
 *      一、屏蔽对Appium API的依赖，如果Appium的某个API官方废弃了，只需修改Driver类封装的相应方法即可
 *      二、如果将Appium换成Macaca或其它框架，除了改动Driver类 其它类无需改动
 * 在Driver中用findElementById等封装对iOS和Android的元素查找，提高代码的复用，尽可能的避免iOS与Android因查找元素方式不同而写相似的代码
+* 该框架适用于同一个APP, Android和iOS UI结构基本一致的情况
 
 
 ## 类
@@ -31,8 +44,8 @@
 * iOS 查找元素时用到的字符串 如： LOGIN_PAGE_PHONE_TEXT_ID: name == '用户名'
 
 
-## Task 
-* 框架通过读取 task目录下的yml 运行指定的测试任务
+## 测试用例集 
+* 框架通过读取 task目录下的yml 运行指定的测试用例
 
 
 ```
@@ -41,6 +54,8 @@
 2. udid : 设备ID
 3. wdaPort : iOS设备运行的时的WDA port
 4. class : 待运行的测试类
+
+测试执行时输入的yml样例
 
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
@@ -62,13 +77,14 @@
 </suite>
 ```
 
-## 如何运行
-* 启动Appium，然后运行测试用命
+## 如何运行 （以demo.yml为例）
+* 启动Appium，然后运行以下命令
 * 方式一 ： 将工程打成Jar包，然后运行命令 java -jar UIAutomation-1.0-fat-tests  ./task/demo.yml
 * 方式2  ： IDEA中 右键单击demo.yml ,选择运行。见下图
 ![](https://github.com/lgxqf/AppUIAutomation/blob/master/doc/Run-By-IDEA.png)
 
+
 ## 参考文档
-* Page Object
+* Page Object https://blog.csdn.net/qq_37546891/article/details/79037299
 * How can I configure the maven shade plugin to include test code in my jar?
 https://code.i-harness.com/en/q/4e91ca
