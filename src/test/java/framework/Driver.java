@@ -100,7 +100,7 @@ public final class Driver {
 
     public static String takeScreenShot(String screenShotName) {
         //等待1秒再截图，不然界面还在变化，载图不是完整初始化后的页面
-        sleep(1);
+        //sleep(1);
 
         try {
 
@@ -263,6 +263,16 @@ public final class Driver {
         log.info("scroll over" );
     }
 
+    public static void scrollUp(){
+        int startX = deviceWidth / 2;
+        int startY = deviceHeight /2;
+
+        int endX = startX;
+        int endY = 100;
+
+        swipe(startX,startY,endX,endY);
+    }
+
     /**
      * 向上滑动，从某个元素的顶部中间位置开始向上滑动一段距离
      * @param yDiff
@@ -298,7 +308,6 @@ public final class Driver {
             log.error("scroll from : startX " +startX + ", startY "+ startY+ ", to  endX "+ endX+ ",endY "+ endY);
             e.printStackTrace();
         }
-        //touchAction.press(startX, startY).waitAction(Duration.ofSeconds(1)).moveTo(endX, endY).release().perform();
     }
     /**
      * 向下滑动，从某个元素的顶部中间位置开始向下滑动一段距离
@@ -612,7 +621,7 @@ public final class Driver {
     //IOS only
     public static MobileElement findElementByNsPredicateIOS(String str){
 
-        return findElementByNsPredicateIOS(str,(int) ConfigUtil.getDefaultWaitSec());
+        return findElementByNsPredicateIOS(str,ConfigUtil.getDefaultWaitSec());
     }
 
     //IOS only
@@ -700,12 +709,12 @@ public final class Driver {
         setWindowSize();
         log.info("Server started.");
 
-        if(false == isMicroProgramme(bundleId)){
-            driver = null;
-            log.info("Micro programme failed to start.");
-        }else {
-            log.info("Server started.");
-        }
+//        if(false == isMicroProgramme(bundleId)){
+//            driver = null;
+//            log.info("Micro programme failed to start.");
+//        }else {
+//            log.info("Server started.");
+//        }
 
         return driver;
     }
@@ -736,15 +745,16 @@ public final class Driver {
         String url = "http://"+ ConfigUtil.getServerIP() +":" + port+"/wd/hub";
         log.info(url);
         driver = new AndroidDriver(new URL(url), capabilities);
+
         //初始化屏幕大小
         setWindowSize();
 
-        if(false == isMicroProgramme(appPackage)){
-            driver = null;
-            log.info("Micro programme failed to start.");
-        }else {
-            log.info("Server started.");
-        }
+//        if(false == isMicroProgramme(appPackage)){
+//            driver = null;
+//            log.info("Micro programme failed to start.");
+//        }else {
+//            log.info("Server started.");
+//        }
 
         return driver;
     }

@@ -6,13 +6,13 @@ GENERAL:
   # 每隔多少秒查找一次元素
   DEFAULT_POLLING_INTERVAL_SEC: 6
   # 用例运行失败时最多重试运行次数
-  RETRY_COUNT: 2
+  RETRY_COUNT: 0
 
 # 运行用例的默认设备
 DEFAULT_DEVICE:
   # 是否开启默认设备，false时需要传入相应的task的yml配置
   # true时只在指定的UDID设备上运行用例
-  DEFAULT_DEVICE_ENABLE: true
+  DEFAULT_DEVICE_ENABLE: false
   UDID: SJE0217B29005225
   APPIUM_PORT: 4723
   IOS_WDA_PORT: 8001
@@ -20,11 +20,11 @@ DEFAULT_DEVICE:
 # 一些运行时需要设置的值
 RUN_TEST_CONIFG:
   # Android 包名
-  ANDROID_PACKAGE: com.weclassroom.fcclassroomapp
+  ANDROID_PACKAGE: com.tencent.mm
   # APK启动时的主活动
-  ANDROID_MAIN_ACTIVITY: com.weclassroom.fcclassroomapp.ui.activity.SplashActivity
+  ANDROID_MAIN_ACTIVITY: com.tencent.mm.ui.LauncherUI
   # iOS bundle ID
-  IOS_BUNDLEID: com.xes.studentClient
+  IOS_BUNDLE_ID: com.tencent.xin
   # Appium server 地址
   APPIUM_SERVER_IP: 0.0.0.0
   # 一些自定义的额外的设置, 可省略
@@ -40,5 +40,8 @@ WECLASS_CONIFG:
 SJE0217B29005225:
   #设备名字
   DEVICE_NAME: HUAWEI
-  WC_USER: 111
-  WC_PASSWORD: 111
+
+#设备相关信息
+214be01a3254152a362fb9107ceb2db22ad3d559:
+  #设备名字
+  DEVICE_NAME: iPhone-7-plus

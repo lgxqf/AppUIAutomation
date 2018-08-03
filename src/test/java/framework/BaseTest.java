@@ -11,12 +11,10 @@ public class BaseTest {
     private final String configFile = System.getProperty("user.dir") +  File.separator + "config/Config.yml";
     public static Logger log = LoggerFactory.getLogger(BaseTest.class);
 
-    protected void subTearDown(){
-    }
+    protected void subTearDown(){}
 
     @BeforeMethod
     @Parameters({"port","udid","wdaPort"})
-    //public void setUp(@Optional("d6744554")String port,@Optional ("4723")String udid,Method method) throws Exception {
     public void setUp(@Optional("") String port, @Optional("") String udid, @Optional("") String wdaPort,Method method) throws Exception {
         ConfigUtil.initialize(configFile,udid,port,wdaPort);
 
@@ -32,7 +30,7 @@ public class BaseTest {
     }
 
     @AfterMethod
-    public void tearDown(Method method) throws Exception {
+    public void tearDown(Method method){
         subTearDown();
 
         ScreenshotRunnable.stop();

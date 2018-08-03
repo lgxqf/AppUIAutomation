@@ -1,11 +1,12 @@
 # APP UI Automation Framework
 
-一个基于Appium、TestNG，Page Object模式开发的UI自动化测试框架
+一个基于Appium 1.8.1、TestNG，Page Object模式开发的UI自动化测试框架
 
 ![](https://github.com/lgxqf/AppUIAutomation/blob/master/doc/structure.png)
 
 
 ## 基本功能
+* 每秒生成一次截图
 * 通过yml配置待执行的测试用例
 * 通过yml指定待执行测试的设备及Appium端口
 * 用例执行失败自动重试，且重试次数可配置
@@ -26,6 +27,11 @@
 * 在Driver中用findElementById等封装对iOS和Android的元素查找，提高代码的复用，尽可能的避免iOS与Android因查找元素方式不同而写相似的代码
 * 该框架适用于同一个APP, Android和iOS UI结构基本一致的情况
 
+## 一些原则
+* Page类的构造函数用Verify代替
+* Page类的构造函数用过findElementByID等来 检查当前页面是不否为期望的Page
+* 依照SRP原则，Page类内的函数 只返回当前类实例（this)或void， 不返回其它页面的对象，确保每个Page与依赖于任何其它Page,提高Page类的复用度
+
 
 ## 类
 * Driver : 封装所有用到的Appium方法。作用屏幕对Appium的依赖、提供更方便的函数。
@@ -43,6 +49,10 @@
 * Android 查找找查元素时用到的字符串 如： LOGIN_PAGE_PHONE_TEXT_ID: com.xes.jazhanghui.activity:id/xes_login_username
 * iOS 查找元素时用到的字符串 如： LOGIN_PAGE_PHONE_TEXT_ID: name == '用户名'
 
+## 资源文件（具体使用方法见demo）
+* 为每个元素新建一个便于辨识的名字，用这个名字统一Android/iOS待查找元素, 然后将不同系统找中该名字的元素对应的值写入相应的RES.yml中
+* AndroidRES.yml 写入Android元素的查找时需要用到的值
+* IOSRES.yml 写入iOS元素的查找时需要用到的值
 
 ## 测试用例集 
 * 框架通过读取 task目录下的yml 运行指定的测试用例
@@ -68,7 +78,7 @@
     <test name="Performance">
         <parameter name = "port" value = "4723"/>     
         <parameter name = "udid" value = "SJE0217B29005225"/>
-        <parameter name = "wdaport" value = "8001"/>
+        <parameter name = "wdaPort" value = "8001"/>
         <classes>
             <class name="testcase.weclass.WCPerformanceTestCPU"/>
             <class name="testcase.weclass.WCPerformanceTestBattery"/>
@@ -77,7 +87,8 @@
 </suite>
 ```
 
-## 如何运行 （以demo.yml为例）
+## 如何运行demo
+* demo实现的功能：打开微信(若未登录微信，请先手动登录)，然后打开朋友圈，查看第一个朋友圈(带图片的)
 * 启动Appium，然后运行以下命令
 * 方式一 ： 将工程打成Jar包，然后运行命令 java -jar UIAutomation-1.0-fat-tests  ./task/demo.yml
 * 方式2  ： IDEA中 右键单击demo.yml ,选择运行。见下图

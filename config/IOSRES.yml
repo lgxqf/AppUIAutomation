@@ -1,2 +1,9 @@
-#欢迎页面 WelcomePage
-WELCOME_PAGE_LOGIN_BUTTON_ID: name == '登 录'
+MAIN_PAGE_WEIXIN_TEXT: '微信'
+MAIN_PAGE_CONTACT_TEXT: '通讯录'
+MAIN_PAGE_DISCOVER_TEXT: '发现'
+MAIN_PAGE_ME_TEXT: '我'
+
+ME_PAGE_MY_POST_TEXT: '相册'
+MOMENT_PAGE_ME_TEXT: '我'
+
+MY_POST_PAGE_MOMENT_PIC_ID: 'visible == true AND type == "XCUIElementTypeStaticText" AND name CONTAINS "月"'

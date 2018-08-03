@@ -43,6 +43,11 @@ public final class Util {
         return udid.length() < 20;
     }
 
+    public static boolean isAndroid() {
+        String udid = ConfigUtil.getUdid();
+        return udid.length() < 20;
+    }
+
     public static String getCurrentTimeString(){
         long timeStamp = System.currentTimeMillis();  //获取当前时间戳,也可以是你自已给的一个随机的或是别人给你的时间戳(一定是long型的数据)
 
