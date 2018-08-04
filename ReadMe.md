@@ -15,6 +15,7 @@
 * 支持自定义配置项
 
 ![](https://github.com/lgxqf/AppUIAutomation/blob/master/doc/Config.png)
+![](/uploads/photo/2018/07156b5a-f994-49fa-8dfe-be86a6b5f7d8.png!large)
 
 ## 设计目标
 * 用一套代码执行Android/iOS测试用例
@@ -113,6 +114,7 @@ public class WeiXinMomentPage extends BasePage {
 * 为每个元素新建一个便于辨识的名字，用这个名字统一Android/iOS待查找元素, 然后将不同系统找中该名字的元素对应的值写入相应的RES.yml中
 * AndroidRES.yml 写入Android元素查找时需要用到的值
 * IOSRES.yml 写入iOS元素查找时需要用到的值
+
 ```aidl
 AndroidRES.yml
 
@@ -126,7 +128,6 @@ MOMENT_PAGE_ME_TEXT: '我的相册'
 
 MY_POST_PAGE_MOMENT_PIC_ID: 'com.tencent.mm:id/dep'
 MY_POST_PAGE_MOMENT_ARTICLE_ID: 'com.tencent.mm:id/yk'
-
 ```
 
 ```aidl
@@ -141,7 +142,6 @@ ME_PAGE_MY_POST_TEXT: '相册'
 MOMENT_PAGE_ME_TEXT: '我'
 
 MY_POST_PAGE_MOMENT_PIC_ID: 'visible == true AND type == "XCUIElementTypeStaticText" AND name CONTAINS "月"'
-
 ```
 
 ## 测试用例集 
@@ -183,6 +183,7 @@ MY_POST_PAGE_MOMENT_PIC_ID: 'visible == true AND type == "XCUIElementTypeStaticT
 * 方式一 ： 将工程打成Jar包，然后运行命令 java -jar UIAutomation-1.0-fat-tests  ./task/demo.xml
 * 方式2  ： IDEA中 右键单击demo.xml ,选择运行。见下图
 ![](https://github.com/lgxqf/AppUIAutomation/blob/master/doc/Run-By-IDEA.png)
+![](/uploads/photo/2018/35b5c6b0-4917-4805-b004-1c14aa7a2a38.png!large)
 
 
 ## 参考文档
