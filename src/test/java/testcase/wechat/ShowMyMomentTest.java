@@ -12,6 +12,7 @@ public class ShowMyMomentTest extends BaseTest {
 
     //打开我的朋友圈
     public void showMyMoment(){
+        
         //打开微信主页面，点击"我"
         WeiXinMainPage.verify()
                 .clickMeButton();
