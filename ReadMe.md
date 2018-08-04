@@ -108,7 +108,7 @@ public class WeiXinMomentPage extends BasePage {
 
 
 ## 配置文件 
-* Config.yml 运行测试时的一些配置项 如包名，重试次数等等。 详见Config.ym内的l注释
+* Config.yml 运行测试时的一些配置项 如包名，重试次数等等。 详见Config.ym内的注释
 
 
 ## 资源文件（具体使用方法见demo）
