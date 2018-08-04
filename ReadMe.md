@@ -3,7 +3,7 @@
 一个基于Appium 1.8.1、TestNG，Page Object模式开发的UI自动化测试框架
 
 ![](https://github.com/lgxqf/AppUIAutomation/blob/master/doc/structure.png)
-
+![](/uploads/photo/2018/fc861afc-93c7-4fab-aa59-b5050886e600.png!large)
 
 ## 基本功能
 * 每秒生成一次截图
@@ -17,7 +17,7 @@
 
 ## 设计目标
 * 用一套代码执行Android/iOS测试用例
-
+* Test case层的代码高度利用，只需要考虑业务逻辑，无需关心系统平台及如何查找元素
 
 ## 设计理念
 * 应用Page Object模式提高UI页面操作代码的复用度
