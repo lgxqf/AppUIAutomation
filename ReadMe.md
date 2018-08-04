@@ -13,7 +13,7 @@
 * 用例执行失败时自动截图
 * 生成测试报告(NGReport)
 * 支持自定义配置项
-
+![](https://github.com/lgxqf/AppUIAutomation/blob/master/doc/Config.png)
 
 ## 设计目标
 * 用一套代码执行Android/iOS测试用例
