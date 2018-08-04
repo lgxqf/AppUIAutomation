@@ -18,6 +18,27 @@
 ## 设计目标
 * 用一套代码执行Android/iOS测试用例
 * Test case层的代码高度利用，只需要考虑业务逻辑，无需关心系统平台及如何查找元素
+```aidl
+以下代码在iOS和Android上均可运行
+@Test
+public class ShowMyMomentTest extends BaseTest {
+
+    public void showMyMoment(){
+
+        WeiXinMainPage.verify()
+                .clickMeButton();
+
+        WeiXinMePage.verify()
+                .clickMoment();
+
+        WeiXinMomentPage.verify()
+                .scroll()
+                .clickMyMoment();
+
+        Driver.sleep(10);
+    }
+}
+```
 
 ## 设计理念
 * 应用Page Object模式提高UI页面操作代码的复用度
