@@ -21,24 +21,23 @@
 * Test case层的代码高度利用，只需要考虑业务逻辑，无需关心系统平台及如何查找元素
 ```aidl
 以下代码在iOS和Android上均可运行
-@Test
-public class ShowMyMomentTest extends BaseTest {
-
+    //打开我的朋友圈
     public void showMyMoment(){
-
+        //打开微信主页面，点击"我"
         WeiXinMainPage.verify()
                 .clickMeButton();
 
+        //校验"我"页面，打开"朋友圈"
         WeiXinMePage.verify()
                 .clickMoment();
 
+        //校验"朋友圈页面"，下划一段距离，然后打开带图片的朋友圈
         WeiXinMomentPage.verify()
                 .scroll()
                 .clickMyMoment();
 
         Driver.sleep(10);
     }
-}
 ```
 
 ## 设计理念
@@ -55,21 +54,32 @@ public class ShowMyMomentTest extends BaseTest {
 * 依照SRP原则，Page类内的函数 只返回当前类实例（this)或void， 不返回其它页面的对象，确保每个Page与依赖于任何其它Page,提高Page类的复用度
 
 ```aidl
+//朋友圈的Page类
 public class WeiXinMomentPage extends BasePage {
 
+    //能过静态方法返回页面实例
     public static WeiXinMomentPage verify(){
-
         if( !Util.isAndroid() ) {
+            //默认情况下写的Page类是Android的UI
+            //若Android与iOS UI上有差异，需继承Android的Page类再写个iOS Page
             return new WeiXinMomentPageiOS();
         }
 
         return new WeiXinMomentPage();
     }
 
+    //不允许调用构造函数
     protected WeiXinMomentPage(){
         Driver.findElementByText(getRes("MOMENT_PAGE_ME_TEXT"));
     }
+    
+    //所有成员函数只返回this或void,确保每个Page类的独立性，不依赖于任何其它Page类
+    public WeiXinMomentPage scroll(){
+        Driver.scrollUp();
 
+        return this;
+    }
+    
     public WeiXinMomentPage clickMyMoment(){
         MobileElement elem = Driver.findElemByIdWithoutException (getRes("MY_POST_PAGE_MOMENT_PIC_ID"));
 
@@ -81,13 +91,8 @@ public class WeiXinMomentPage extends BasePage {
 
         return this;
     }
-
-    public WeiXinMomentPage scroll(){
-        Driver.scrollUp();
-
-        return this;
-    }
 }
+
 ```
 ## 类
 * Driver : 封装所有用到的Appium方法。作用屏幕对Appium的依赖、提供更方便的函数。
