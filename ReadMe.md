@@ -1,4 +1,5 @@
 # APP UI Automation Framework
+https://github.com/lgxqf/AppUIAutomation
 
 一个基于Appium 1.8.1、TestNG，Page Object模式开发的UI自动化测试框架
 
