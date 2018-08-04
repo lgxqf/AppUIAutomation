@@ -32,7 +32,41 @@
 * Page类的构造函数用过findElementByID等来 检查当前页面是不否为期望的Page
 * 依照SRP原则，Page类内的函数 只返回当前类实例（this)或void， 不返回其它页面的对象，确保每个Page与依赖于任何其它Page,提高Page类的复用度
 
+```aidl
+public class WeiXinMomentPage extends BasePage {
 
+    public static WeiXinMomentPage verify(){
+
+        if( !Util.isAndroid() ) {
+            return new WeiXinMomentPageiOS();
+        }
+
+        return new WeiXinMomentPage();
+    }
+
+    protected WeiXinMomentPage(){
+        Driver.findElementByText(getRes("MOMENT_PAGE_ME_TEXT"));
+    }
+
+    public WeiXinMomentPage clickMyMoment(){
+        MobileElement elem = Driver.findElemByIdWithoutException (getRes("MY_POST_PAGE_MOMENT_PIC_ID"));
+
+        if(elem == null){
+            elem = Driver.findElementById(getRes("MY_POST_PAGE_MOMENT_ARTICLE_ID"));
+        }
+
+        elem.click();
+
+        return this;
+    }
+
+    public WeiXinMomentPage scroll(){
+        Driver.scrollUp();
+
+        return this;
+    }
+}
+```
 ## 类
 * Driver : 封装所有用到的Appium方法。作用屏幕对Appium的依赖、提供更方便的函数。
 * BasePage : 所有Page类的基类
@@ -52,7 +86,36 @@
 * 为每个元素新建一个便于辨识的名字，用这个名字统一Android/iOS待查找元素, 然后将不同系统找中该名字的元素对应的值写入相应的RES.yml中
 * AndroidRES.yml 写入Android元素查找时需要用到的值
 * IOSRES.yml 写入iOS元素查找时需要用到的值
+```aidl
+AndroidRES.yml
 
+MAIN_PAGE_WEIXIN_TEXT: '微信'
+MAIN_PAGE_CONTACT_TEXT: '通讯录'
+MAIN_PAGE_DISCOVER_TEXT: '发现'
+MAIN_PAGE_ME_TEXT: '我'
+
+ME_PAGE_MY_POST_TEXT: '相册'
+MOMENT_PAGE_ME_TEXT: '我的相册'
+
+MY_POST_PAGE_MOMENT_PIC_ID: 'com.tencent.mm:id/dep'
+MY_POST_PAGE_MOMENT_ARTICLE_ID: 'com.tencent.mm:id/yk'
+
+```
+
+```aidl
+IOSRES.yml
+
+MAIN_PAGE_WEIXIN_TEXT: '微信'
+MAIN_PAGE_CONTACT_TEXT: '通讯录'
+MAIN_PAGE_DISCOVER_TEXT: '发现'
+MAIN_PAGE_ME_TEXT: '我'
+
+ME_PAGE_MY_POST_TEXT: '相册'
+MOMENT_PAGE_ME_TEXT: '我'
+
+MY_POST_PAGE_MOMENT_PIC_ID: 'visible == true AND type == "XCUIElementTypeStaticText" AND name CONTAINS "月"'
+
+```
 
 ## 测试用例集 
 * 框架通过读取 task目录下的xml 运行指定的测试用例

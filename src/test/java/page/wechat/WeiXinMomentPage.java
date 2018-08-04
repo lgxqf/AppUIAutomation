@@ -8,6 +8,7 @@ import io.appium.java_client.MobileElement;
 public class WeiXinMomentPage extends BasePage {
 
     public static WeiXinMomentPage verify(){
+
         if( !Util.isAndroid() ) {
             return new WeiXinMomentPageiOS();
         }
@@ -27,6 +28,7 @@ public class WeiXinMomentPage extends BasePage {
         }
 
         elem.click();
+
         return this;
     }
 
