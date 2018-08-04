@@ -22,6 +22,7 @@
 * Test case层的代码高度利用，只需要考虑业务逻辑，无需关心系统平台及如何查找元素
 ```aidl
 以下代码在iOS和Android上均可运行
+
     //打开我的朋友圈
     public void showMyMoment(){
         //打开微信主页面，点击"我"

@@ -19,7 +19,7 @@ public class WeiXinMomentPage extends BasePage {
         return new WeiXinMomentPage();
     }
 
-    //不允许调用构造函数
+    //不允许调用构造函数,构造函数会对页面的关键元素做检查，确保当前页面是期望的页面
     protected WeiXinMomentPage(){
         Driver.findElementByText(getRes("MOMENT_PAGE_ME_TEXT"));
     }
