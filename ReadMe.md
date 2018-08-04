@@ -7,7 +7,7 @@
 
 ## 基本功能
 * 每秒生成一次截图
-* 通过yml配置待执行的测试用例
+* 通过xml配置待执行的测试用例
 * 通过yml指定待执行测试的设备及Appium端口
 * 用例执行失败自动重试，且重试次数可配置
 * 用例执行失败时自动截图
@@ -55,17 +55,17 @@
 
 
 ## 测试用例集 
-* 框架通过读取 task目录下的yml 运行指定的测试用例
+* 框架通过读取 task目录下的xml 运行指定的测试用例
 
 
 ```
-在任务的yml中配置四项值
+在任务的xml中有四个值需要配置
 1. port : Appium 端口   
 2. udid : 设备ID
 3. wdaPort : iOS设备运行的时的WDA port
 4. class : 待运行的测试类
 
-测试执行时输入的yml样例
+测试执行时输入的xml样例
 
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
@@ -90,8 +90,8 @@
 ## 如何运行demo
 * demo实现的功能：打开微信(若未登录微信，请先手动登录)，然后打开朋友圈，查看第一个朋友圈(带图片的)
 * 启动Appium，然后运行以下命令
-* 方式一 ： 将工程打成Jar包，然后运行命令 java -jar UIAutomation-1.0-fat-tests  ./task/demo.yml
-* 方式2  ： IDEA中 右键单击demo.yml ,选择运行。见下图
+* 方式一 ： 将工程打成Jar包，然后运行命令 java -jar UIAutomation-1.0-fat-tests  ./task/demo.xml
+* 方式2  ： IDEA中 右键单击demo.xml ,选择运行。见下图
 ![](https://github.com/lgxqf/AppUIAutomation/blob/master/doc/Run-By-IDEA.png)
 
 
