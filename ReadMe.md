@@ -1,5 +1,4 @@
 # APP UI Automation Framework
-https://github.com/lgxqf/AppUIAutomation
 
 一个基于Appium 1.8.1、TestNG，Page Object模式开发的UI自动化测试框架
 
@@ -54,8 +53,8 @@ https://github.com/lgxqf/AppUIAutomation
 
 ## 一些原则
 * Page类的构造函数用Verify代替
-* Page类的构造函数用过findElementByID等来 检查当前页面是不否为期望的Page
-* 依照SRP原则，Page类内的函数 只返回当前类实例（this)或void， 不返回其它页面的对象，确保每个Page与依赖于任何其它Page,提高Page类的复用度
+* Page类的构造函数用findElementByID等函数能过检查页面关键元素来判断当前页面是不否为期望的Page
+* 依照SRP原则，Page类内的函数 只返回当前类实例（this)或void， 不返回其它页面的对象，确保每个Page的单一职责且不依赖于任何其它Page
 
 ```aidl
 //朋友圈的Page类
@@ -191,5 +190,4 @@ MY_POST_PAGE_MOMENT_PIC_ID: 'visible == true AND type == "XCUIElementTypeStaticT
 
 ## 参考文档
 * Page Object https://blog.csdn.net/qq_37546891/article/details/79037299
-* How can I configure the maven shade plugin to include test code in my jar?
-https://code.i-harness.com/en/q/4e91ca
+* How can I configure the maven shade plugin to include test code in my jar? https://code.i-harness.com/en/q/4e91ca
