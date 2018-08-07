@@ -1188,4 +1188,5 @@ public final class Driver {
     public static int getScreenActualHeight(){
         return getDeviceHeight()* getScreenScale();
     }
+
 }

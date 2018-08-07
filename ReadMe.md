@@ -8,11 +8,12 @@ https://github.com/lgxqf/AppUIAutomation
 
 ## 基本功能
 * 每秒生成一次截图
-* 通过xml配置待执行的测试用例
-* 通过yml指定待执行测试的设备及Appium端口
+* 生成Android/iOS log文件
 * 用例执行失败自动重试，且重试次数可配置
 * 用例执行失败时自动截图
 * 生成测试报告(NGReport)
+* 通过xml配置待执行的测试用例
+* 通过yml指定待执行测试的设备及Appium端口
 * 支持自定义配置项
 
 ![](https://github.com/lgxqf/AppUIAutomation/blob/master/doc/Config.png)
