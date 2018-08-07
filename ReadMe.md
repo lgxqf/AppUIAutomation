@@ -99,12 +99,12 @@ public class WeiXinMomentPage extends BasePage {
 
 ```
 ## 类
-* Driver : 封装所有用到的Appium方法。作用屏幕对Appium的依赖、提供更方便的函数。
+* Driver : 封装所有用到的Appium方法。作用屏蔽对Appium的依赖、提供更方便的函数。
 * BasePage : 所有Page类的基类
 * BaseTest : 所有Test类的基类
-* ConfigUtil : 读取工程配置文件
-* ResourceUtil : 读取资源配置文件 
-* Util : 工具类，提供一些能用方法
+* ConfigUtil : 读取config.yml配置文件
+* ResourceUtil : 读取*.RES.yml资源配置文件
+* Util : 工具类，提供一些通用方法
 * PageUtil : 封装进入某个页面的方法，方便复杂test case的编写
 * TestListener : 监听测试结果，用例执行失败时截图
 

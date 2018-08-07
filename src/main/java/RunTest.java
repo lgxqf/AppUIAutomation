@@ -107,8 +107,6 @@ public class RunTest {
     }
 
     public static String getUdid(String fileName){
-
-        StringBuilder builder = new StringBuilder();
         String udid = null;
 
         try{
@@ -122,19 +120,23 @@ public class RunTest {
             int index = s.lastIndexOf("=") + 3;
             int indexEnd = s.lastIndexOf("\"");
             udid = s.substring(index,indexEnd);
-            log.info(udid);
+            //log.info(udid);
         }catch(Exception e){
+            log.error("Fail to get device udid from test suite xml");
             e.printStackTrace();
         }
 
         return udid;
     }
 
-    // java -jar target/UIAutomation-1.0-fat-tests.jar  ./task/demo-android.xml
+    // java -jar target/UIAutomation-1.0-fat-tests.jar  task/demo-android.xml
     public static void main(String args[]){
         TestNG testng = new TestNG();
         String xmlFile = args[0];
+        log.info("Test suite file " + xmlFile);
+
         String udid = getUdid(xmlFile);
+        log.info("Device udid " + udid);
 
         List<String> suites = Lists.newArrayList();
         suites.add(xmlFile);
