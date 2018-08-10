@@ -7,3 +7,5 @@ ME_PAGE_MY_POST_TEXT: '相册'
 MOMENT_PAGE_ME_TEXT: '我'
 
 MY_POST_PAGE_MOMENT_PIC_ID: 'visible == true AND type == "XCUIElementTypeStaticText" AND name CONTAINS "月"'
+
+MOMENT_DETAILED_PAGE_PRAISE_TEXT: '赞'

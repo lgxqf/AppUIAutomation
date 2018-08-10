@@ -5,6 +5,7 @@ import framework.Driver;
 import org.testng.annotations.Test;
 import page.wechat.WeiXinMainPage;
 import page.wechat.WeiXinMePage;
+import page.wechat.WeiXinMomentDetailedPage;
 import page.wechat.WeiXinMomentPage;
 
 @Test
@@ -25,6 +26,9 @@ public class ShowMyMomentTest extends BaseTest {
         WeiXinMomentPage.verify()
                 .scroll()
                 .clickMyMoment();
+
+        //校验"朋友圈详情"页面
+        WeiXinMomentDetailedPage.verify();
 
         Driver.sleep(10);
     }

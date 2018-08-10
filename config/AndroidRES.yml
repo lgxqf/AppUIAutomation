@@ -9,3 +9,5 @@ MOMENT_PAGE_ME_TEXT: '我的相册'
 MY_POST_PAGE_MOMENT_PIC_ID: 'com.tencent.mm:id/dep'
 MY_POST_PAGE_MOMENT_ARTICLE_ID: 'com.tencent.mm:id/yk'
 
+
+MOMENT_DETAILED_PAGE_PRAISE_TEXT: '赞'
