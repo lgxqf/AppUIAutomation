@@ -1,17 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="TestSuite">
-    <listeners>
-        <listener class-name="framework.TestListener" />
-    </listeners>
 
-    <test name="HW-8">
-        <parameter name = "port" value = "4723"/>
-        <parameter name = "udid" value = "SJE0217B29005225"/>
-        <parameter name = "wdaPort" value = "8001"/>
-        <classes>
-            <class name="testcase.wechat.ShowMyMomentTest"/>
-        </classes>
-    </test>
-</suite>
+
+
+
+        <?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+        <suite name="TestSuite">
+            <listeners>
+                <listener class-name="framework.TestListener" />
+            </listeners>
+
+            <test name="HW-8">
+                <parameter name = "port" value = "4723"/>
+                <parameter name = "udid" value = "SJE0217B29005225"/>
+                <parameter name = "wdaPort" value = "8001"/>
+                <classes>
+                    <class name="testcase.wechat.ShowMyMomentTest"/>
+                </classes>
+            </test>
+        </suite>
