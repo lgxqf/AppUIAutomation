@@ -22,7 +22,7 @@ public class ShowMyMomentTest extends BaseTest {
         WeiXinMePage.verify()
                 .clickMoment();
 
-        //校验"朋友圈页面"，下划一段距离，然后打开带图片的朋友圈
+        //校验"朋友圈页面"，下划一段距离，然后打开一条朋友圈
         WeiXinMomentPage.verify()
                 .scroll()
                 .clickMyMoment();

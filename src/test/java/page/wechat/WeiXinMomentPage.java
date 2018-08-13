@@ -32,9 +32,11 @@ public class WeiXinMomentPage extends BasePage {
     }
 
     public WeiXinMomentPage clickMyMoment(){
+        //查找带图片的朋友圈
         MobileElement elem = Driver.findElemByIdWithoutException (getRes("MY_POST_PAGE_MOMENT_PIC_ID"));
 
         if(elem == null){
+            //如果没有带图片的朋友全，则查找"转发"类的朋友圈
             elem = Driver.findElementById(getRes("MY_POST_PAGE_MOMENT_ARTICLE_ID"));
         }
 
