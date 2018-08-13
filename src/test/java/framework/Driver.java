@@ -91,22 +91,27 @@ public final class Driver {
 
     public static String takeScreenShotWithExt(String ext){
         String name = getScreenShortName(ext);
-        return takeScreenShot(name);
+        return takeScreenShot(name,true);
     }
 
     public static String takeScreenShot(){
-        return  takeScreenShot(getScreenShortName());
+        return  takeScreenShot(getScreenShortName(),true);
     }
 
-    public static String takeScreenShot(String screenShotName) {
+    public static String takeScreenShot(boolean showLog){
+        return  takeScreenShot(getScreenShortName(),showLog);
+    }
+
+    public static String takeScreenShot(String screenShotName,boolean showLog) {
         //等待1秒再截图，不然界面还在变化，载图不是完整初始化后的页面
         //sleep(1);
 
         try {
-
             File screenShot = driver.getScreenshotAs(OutputType.FILE);
 
-            log.info("screenShotName: " + screenShotName);
+            if(showLog){
+                log.info("screenShotName: " + screenShotName);
+            }
 
             FileUtils.copyFile(screenShot, new File(screenShotName));
 
@@ -791,21 +796,6 @@ public final class Driver {
 
         log.info("Window width " + deviceWidth);
         log.info("Window height " + deviceHeight);
-    }
-
-    public static void takesScreenShotAndPressBack(){
-        takeScreenShot();
-        pressBack();
-    }
-
-    public static void pressBackAndTakesScreenShot(){
-        takeScreenShot();
-        pressBack();
-    }
-
-    public static void takesScreenShotAndPressBack(StringBuilder builder){
-        takeScreenShot();
-        pressBack(builder);
     }
 
     public static void pressBack(StringBuilder builder){

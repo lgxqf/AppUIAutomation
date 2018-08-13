@@ -85,10 +85,10 @@ public class ConfigUtil {
 
             //Initialize data such as device name etc by its uuid
             keyList = new ArrayList(Arrays.asList(udid));
-            List<String> addiontalList = getListValue(ADDITION_CONIG);
+            List<String> addtionalList = getListValue(ADDITION_CONIG);
 
-            if(addiontalList != null){
-                for(String key : addiontalList){
+            if(addtionalList != null){
+                for(String key : addtionalList){
                     keyList.add(key);
                     log.info("Additional item " + key + "is added");
                 }
@@ -118,10 +118,13 @@ public class ConfigUtil {
 
     protected static void addConfigItem(List<String> keyList){
         for(String key : keyList){
-            Map<String,Object> tempMap = (Map<String,Object>)ymlMap.get(key);
+            Object obj = ymlMap.get(key);
 
-            for(String itemKey : tempMap.keySet()){
-                configItems.put(itemKey,tempMap.get(itemKey));
+            if(obj != null) {
+                Map<String, Object> tempMap = (Map<String, Object>)obj;
+                for(String itemKey : tempMap.keySet()){
+                    configItems.put(itemKey,tempMap.get(itemKey));
+                }
             }
         }
     }
