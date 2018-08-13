@@ -192,8 +192,8 @@ MY_POST_PAGE_MOMENT_PIC_ID: 'visible == true AND type == "XCUIElementTypeStaticT
 ![](http://10.2.250.21/wiki/window/raw/master/AppUIAutomation/doc/Run-By-IDEA.png)
 
 ## 介绍文档
-![](doc/Framework-Introduction.pptx.png)
-![](doc/Introduction-about-the-example.pptx.png)
+![](doc/Framework-Introduction.pptx)
+![](doc/Introduction-about-the-example.pptx)
 
 
 ## 参考文档
