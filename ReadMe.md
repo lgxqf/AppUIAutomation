@@ -4,7 +4,7 @@
 
 ## 介绍文档 doc/
 * Framework-Introduction.pptx
-* dIntroduction-about-the-example.pptx
+* Introduction-about-the-example.pptx
 
 ![](https://github.com/lgxqf/AppUIAutomation/blob/master/doc/structure.png)
 ![](/uploads/photo/2018/fc861afc-93c7-4fab-aa59-b5050886e600.png!large)
