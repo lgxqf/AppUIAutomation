@@ -191,6 +191,10 @@ MY_POST_PAGE_MOMENT_PIC_ID: 'visible == true AND type == "XCUIElementTypeStaticT
 ![](/uploads/photo/2018/35b5c6b0-4917-4805-b004-1c14aa7a2a38.png!large)
 ![](http://10.2.250.21/wiki/window/raw/master/AppUIAutomation/doc/Run-By-IDEA.png)
 
+## 介绍文档
+![](doc/Framework-Introduction.pptx.png)
+![](doc/Introduction-about-the-example.pptx.png)
+
 
 ## 参考文档
 * Page Object https://blog.csdn.net/qq_37546891/article/details/79037299
