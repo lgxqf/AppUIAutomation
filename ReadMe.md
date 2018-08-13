@@ -194,6 +194,8 @@ MY_POST_PAGE_MOMENT_PIC_ID: 'visible == true AND type == "XCUIElementTypeStaticT
 ## 介绍文档
 * doc/Framework-Introduction.pptx
 * doc/Introduction-about-the-example.pptx
+* ![](./doc/Introduction-about-the-example.pptx)
+
 
 
 ## 参考文档
