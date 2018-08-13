@@ -186,6 +186,7 @@ MY_POST_PAGE_MOMENT_PIC_ID: 'visible == true AND type == "XCUIElementTypeStaticT
 * 启动Appium，然后运行以下命令
 * 方式一 ： 将工程打成Jar包，然后运行命令 java -jar UIAutomation-1.0-fat-tests  ./task/demo.xml
 * 方式2  ： IDEA中 右键单击demo.xml ,选择运行。见下图
+
 ![](https://github.com/lgxqf/AppUIAutomation/blob/master/doc/Run-By-IDEA.png)
 ![](/uploads/photo/2018/35b5c6b0-4917-4805-b004-1c14aa7a2a38.png!large)
 ![](http://10.2.250.21/wiki/window/raw/master/AppUIAutomation/doc/Run-By-IDEA.png)
