@@ -4,6 +4,7 @@
 
 ![](https://github.com/lgxqf/AppUIAutomation/blob/master/doc/structure.png)
 ![](/uploads/photo/2018/fc861afc-93c7-4fab-aa59-b5050886e600.png!large)
+![](http://10.2.250.21/wiki/window/raw/master/AppUIAutomation/doc/structure.png)
 
 ## 基本功能
 * 每秒生成一次截图
@@ -17,6 +18,7 @@
 
 ![](https://github.com/lgxqf/AppUIAutomation/blob/master/doc/Config.png)
 ![](/uploads/photo/2018/07156b5a-f994-49fa-8dfe-be86a6b5f7d8.png!large)
+![](http://10.2.250.21/wiki/window/raw/master/AppUIAutomation/doc/Config.png)
 
 ## 设计目标
 * 用一套代码执行Android/iOS测试用例
@@ -186,6 +188,7 @@ MY_POST_PAGE_MOMENT_PIC_ID: 'visible == true AND type == "XCUIElementTypeStaticT
 * 方式2  ： IDEA中 右键单击demo.xml ,选择运行。见下图
 ![](https://github.com/lgxqf/AppUIAutomation/blob/master/doc/Run-By-IDEA.png)
 ![](/uploads/photo/2018/35b5c6b0-4917-4805-b004-1c14aa7a2a38.png!large)
+![](http://10.2.250.21/wiki/window/raw/master/AppUIAutomation/doc/Run-By-IDEA.png)
 
 
 ## 参考文档
