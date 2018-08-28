@@ -10,7 +10,6 @@ import page.wechat.WeiXinMomentPage;
 
 @Test
 public class ShowMyMomentTest extends BaseTest {
-
     //打开我的朋友圈
     public void showMyMoment(){
 

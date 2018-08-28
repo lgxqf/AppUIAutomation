@@ -1,7 +1,10 @@
+import com.run.Performance;
+import com.run.Theatre;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.TestNG;
-import org.testng.collections.Lists;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -131,17 +134,27 @@ public class RunTest {
 
     // java -jar target/UIAutomation-1.0-fat-tests.jar  task/demo-android.xml
     public static void main(String args[]){
-        TestNG testng = new TestNG();
-        String xmlFile = args[0];
-        log.info("Test suite file " + xmlFile);
 
-        String udid = getUdid(xmlFile);
-        log.info("Device udid " + udid);
+        AnnotationConfigApplicationContext ac=new AnnotationConfigApplicationContext("com.run");
 
-        List<String> suites = Lists.newArrayList();
-        suites.add(xmlFile);
-        testng.setTestSuites(suites);
-        startLogRecord(udid);
-        testng.run();
+        //获取播放器
+        //Performance pf=ac.getBean(Performance.class);
+        Performance pf = new Theatre();
+        //播放
+        pf.perform();
+        pf.doit();
+
+//        TestNG testng = new TestNG();
+//        String xmlFile = args[0];
+//        log.info("Test suite file " + xmlFile);
+//
+//        String udid = getUdid(xmlFile);
+//        log.info("Device udid " + udid);
+//
+//        List<String> suites = Lists.newArrayList();
+//        suites.add(xmlFile);
+//        testng.setTestSuites(suites);
+//        startLogRecord(udid);
+//        testng.run();
     }
 }

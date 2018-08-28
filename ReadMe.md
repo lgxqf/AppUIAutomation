@@ -173,7 +173,7 @@ MY_POST_PAGE_MOMENT_PIC_ID: 'visible == true AND type == "XCUIElementTypeStaticT
         <listener class-name="framework.TestListener" />
     </listeners>
 
-    <test name="Performance">
+    <test name="com.run.Performance">
         <parameter name = "port" value = "4723"/>     
         <parameter name = "udid" value = "SJE0217B29005225"/>
         <parameter name = "wdaPort" value = "8001"/>
