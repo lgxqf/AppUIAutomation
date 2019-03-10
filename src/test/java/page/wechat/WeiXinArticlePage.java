@@ -10,7 +10,7 @@ import java.util.Random;
 public class WeiXinArticlePage extends BasePage {
 
     private MobileElement adText;
-
+    public static final int MAX_RANDOM_SLEEP_TIME = 10;
     public static WeiXinArticlePage verify(){
         return new WeiXinArticlePage();
     }
@@ -25,7 +25,6 @@ public class WeiXinArticlePage extends BasePage {
         int x = Driver.getDeviceWidth() / 2;
         int y = Driver.getDeviceHeight() / 2;
 
-        int maxSleepTime = 10;
 
         //在文章界面 下划两次， 休眠时间随机
         Random rnd = new Random();
@@ -33,7 +32,7 @@ public class WeiXinArticlePage extends BasePage {
         for(int i = 0 ;i < 2; i++) {
             Driver.scrollUp(x,y,y-10);
             Driver.sleep(2);
-            //Driver.sleep(rnd.nextInt(maxSleepTime));
+            Driver.sleep(rnd.nextInt(MAX_RANDOM_SLEEP_TIME));
         }
 
         adText = Driver.findElementByText(getRes("ARTICLE_PAGE_AD_TEXT"));

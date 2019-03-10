@@ -4,6 +4,9 @@ import framework.BaseTest;
 import framework.Driver;
 import org.testng.annotations.Test;
 import page.wechat.*;
+
+import java.util.Random;
+
 import static framework.ResourceUtil.getRes;
 
 public class ClickEnglishQuoteTest  extends BaseTest {
@@ -79,10 +82,11 @@ public class ClickEnglishQuoteTest  extends BaseTest {
                     continue;
                 }
 
+                Random rnd = new Random();
                 //Enter into AD Page, do some scroll
                 for(int i = 0 ; i <2 ; i++) {
                     Driver.sleep(5);
-                    //Driver.sleep(rnd.nextInt(maxSleepTime));
+                    Driver.sleep(rnd.nextInt(WeiXinArticlePage.MAX_RANDOM_SLEEP_TIME));
                     Driver.scrollUp(x, y, y);
                 }
 
@@ -91,7 +95,7 @@ public class ClickEnglishQuoteTest  extends BaseTest {
                 Driver.pressBack();
                 adClickedCount ++;
 
-                log.info("AD clicked: " + adClickedCount + "    Article Failure clicked:" +articleFailureCount + "  AD Failure clicked:" + adFailureCount);
+                log.info("+++===+++===t AD clicked: " + adClickedCount + "    Article Failure clicked:" +articleFailureCount + "  AD Failure clicked:" + adFailureCount);
 
             }
 
