@@ -175,7 +175,7 @@ public final class Driver {
         elem.click();
         elem.clear();
         elem.sendKeys(text);
-        log.info("Text is set to : " + elem.getText());
+        log.info("Text is set to : " + elem.toString());
     }
 
     public static int getDeviceHeight(){
@@ -751,16 +751,7 @@ public final class Driver {
         log.info(url);
         driver = new AndroidDriver(new URL(url), capabilities);
 
-        //初始化屏幕大小
         setWindowSize();
-
-//        if(false == isMicroProgramme(appPackage)){
-//            driver = null;
-//            log.info("Micro programme failed to start.");
-//        }else {
-//            log.info("Server started.");
-//        }
-
         return driver;
     }
 
@@ -857,7 +848,7 @@ public final class Driver {
         //[ro.build.version.sdk]: [25]
         String res = Util.exeCmd(cmdList);
 
-        if(res == null ||res.length() < 5){
+        if(res == null || res.length() < 5){
             log.error("\n\nERROR:Fail to get sdk version!!!! The specified device udid : "+ udid + " is not found \n");
             String deviceList = Util.exeCmd("adb devices",false);
             String output ="List of devices attached";

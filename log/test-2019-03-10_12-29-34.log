@@ -1,0 +1,22 @@
+12:29:34.838 [main] INFO  f.ConfigUtil - Reading config file /Users/justin/Project/AppUIAutomation/config/Config.yml
+12:29:35.007 [main] INFO  f.ConfigUtil - Config : DEFAULT_DEVICE_ENABLE = false
+12:29:35.008 [main] INFO  f.ConfigUtil - Config : ADDITION_CONIG = [WECLASS_CONIFG]
+12:29:35.008 [main] INFO  f.ConfigUtil - Additional item WECLASS_CONIFGis added
+12:29:35.008 [main] INFO  f.ConfigUtil - Config : DEFAULT_WAIT_SEC = 20
+12:29:35.008 [main] INFO  f.ConfigUtil - Config : DEFAULT_POLLING_INTERVAL_SEC = 6
+12:29:35.010 [main] INFO  f.ConfigUtil - rootDir is /Users/justin/Project/AppUIAutomation/d6744554-2019-03-10-12_29_35
+12:29:35.035 [main] INFO  f.ConfigUtil - Config : ANDROID_PACKAGE = com.tencent.mm
+12:29:35.035 [main] INFO  f.ConfigUtil - Config : ANDROID_MAIN_ACTIVITY = com.tencent.mm.ui.LauncherUI
+12:29:35.036 [main] INFO  f.Driver - ===== Method : prepareForAppiumAndroid   
+12:29:35.037 [main] INFO  f.Driver - appPackage com.tencent.mm
+12:29:35.042 [main] INFO  f.Util - System name is :Mac OS X
+12:29:35.043 [main] INFO  f.Util - Method exeCmd : [sh, -c, adb -s d6744554 shell getprop | grep version.sdk]
+12:29:35.179 [main] INFO  f.Util - [sh, -c, adb -s d6744554 shell getprop | grep version.sdk]  ---output is : 
+12:29:35.180 [main] ERROR f.Driver - 
+
+ERROR:Fail to get sdk version!!!! The specified device udid : d6744554 is not found 
+
+12:29:35.214 [main] ERROR f.Driver - ERROR: No devices are connected!!!
+
+12:29:35.215 [main] INFO  f.ConfigUtil - Config : APPIUM_SERVER_IP = 0.0.0.0
+12:29:35.217 [main] INFO  f.Driver - http://0.0.0.0:4723/wd/hub

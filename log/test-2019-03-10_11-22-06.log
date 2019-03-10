@@ -1,0 +1,76 @@
+11:22:06.496 [main] INFO  f.ConfigUtil - Reading config file /Users/justin/Project/AppUIAutomation/config/Config.yml
+11:22:06.626 [main] INFO  f.ConfigUtil - Config : DEFAULT_DEVICE_ENABLE = false
+11:22:06.626 [main] INFO  f.ConfigUtil - Config : ADDITION_CONIG = [WECLASS_CONIFG]
+11:22:06.626 [main] INFO  f.ConfigUtil - Additional item WECLASS_CONIFGis added
+11:22:06.626 [main] INFO  f.ConfigUtil - Config : DEFAULT_WAIT_SEC = 20
+11:22:06.626 [main] INFO  f.ConfigUtil - Config : DEFAULT_POLLING_INTERVAL_SEC = 6
+11:22:06.630 [main] INFO  f.ConfigUtil - rootDir is /Users/justin/Project/AppUIAutomation/d6744554-2019-03-10-11_22_06
+11:22:06.663 [main] INFO  f.ConfigUtil - Config : ANDROID_PACKAGE = com.tencent.mm
+11:22:06.663 [main] INFO  f.ConfigUtil - Config : ANDROID_MAIN_ACTIVITY = com.tencent.mm.ui.LauncherUI
+11:22:06.664 [main] INFO  f.Driver - ===== Method : prepareForAppiumAndroid   
+11:22:06.664 [main] INFO  f.Driver - appPackage com.tencent.mm
+11:22:06.667 [main] INFO  f.Util - System name is :Mac OS X
+11:22:06.668 [main] INFO  f.Util - Method exeCmd : [sh, -c, adb -s d6744554 shell getprop | grep version.sdk]
+11:22:06.917 [main] INFO  f.Util - [sh, -c, adb -s d6744554 shell getprop | grep version.sdk]  ---output is : [ro.build.version.sdk]: [23]
+11:22:06.917 [main] INFO  f.Driver - sdk version : 23
+11:22:06.918 [main] INFO  f.ConfigUtil - Config : APPIUM_SERVER_IP = 0.0.0.0
+11:22:06.920 [main] INFO  f.Driver - http://0.0.0.0:4723/wd/hub
+11:22:24.706 [main] INFO  f.Driver - Window width 1080
+11:22:24.706 [main] INFO  f.Driver - Window height 1920
+11:22:24.718 [main] INFO  f.Log - 
+
+
+11:22:24.719 [main] INFO  f.Log - ------------------------------------------------------------------------
+11:22:24.719 [main] INFO  f.Log - >>>>>>>>>>>>>>>>>>>>>>Running Test : traverseEnglishQuote
+11:22:24.720 [main] INFO  f.Log - page.wechat.WeiXinMainPage
+11:22:27.745 [main] INFO  f.Log - ResourceUtil file /Users/justin/Project/AppUIAutomation/config/AndroidRES.yml
+11:22:27.745 [main] INFO  f.Log - Config : MAIN_PAGE_WEIXIN_TEXT = 微信
+11:22:27.746 [main] INFO  f.Driver - ===== Method : scrollToElementByText    微信
+11:22:27.761 [main] INFO  f.Driver - ===== Method : findElement   
+11:22:27.897 [Thread-1] INFO  f.Driver - ===== Method : sleep    seconds 3.0
+11:22:29.434 [main] INFO  f.Driver - Element By.AndroidUIAutomator: new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().text("微信")); is found.
+11:22:29.434 [main] INFO  f.Log - Config : MAIN_PAGE_CONTACT_TEXT = 通讯录
+11:22:29.435 [main] INFO  f.Driver - ===== Method : scrollToElementByText    通讯录
+11:22:29.435 [main] INFO  f.Driver - ===== Method : findElement   
+11:22:29.607 [main] INFO  f.Driver - Element By.AndroidUIAutomator: new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().text("通讯录")); is found.
+11:22:29.607 [main] INFO  f.Log - Config : MAIN_PAGE_DISCOVER_TEXT = 发现
+11:22:29.607 [main] INFO  f.Driver - ===== Method : scrollToElementByText    发现
+11:22:29.607 [main] INFO  f.Driver - ===== Method : findElement   
+11:22:29.707 [main] INFO  f.Driver - Element By.AndroidUIAutomator: new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().text("发现")); is found.
+11:22:29.707 [main] INFO  f.Log - Config : MAIN_PAGE_CONTACT_TEXT = 通讯录
+11:22:29.707 [main] INFO  f.Driver - ===== Method : scrollToElementByText    通讯录
+11:22:29.708 [main] INFO  f.Driver - ===== Method : findElement   
+11:22:29.913 [main] INFO  f.Driver - Element By.AndroidUIAutomator: new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().text("通讯录")); is found.
+11:22:30.129 [main] INFO  f.Log - page.wechat.WeiXinContactPage
+11:22:30.265 [main] INFO  f.Log - Config : OFFICIAL_ACCOUNTS_TEXT = 公众号
+11:22:30.265 [main] INFO  f.Driver - ===== Method : scrollToElementByText    公众号
+11:22:30.265 [main] INFO  f.Driver - ===== Method : findElement   
+11:22:32.423 [Thread-1] INFO  f.Driver - ===== Method : sleep    seconds 3.0
+11:22:32.996 [main] INFO  f.Driver - Element By.AndroidUIAutomator: new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().text("公众号")); is found.
+11:22:33.360 [main] INFO  f.Log - page.wechat.WeiXinOfficialAccountsPage
+11:22:33.373 [main] INFO  f.Log - Config : OFFICIAL_ACCOUNTS_TEXT = 公众号
+11:22:33.374 [main] INFO  f.Driver - ===== Method : scrollToElementByText    公众号
+11:22:33.374 [main] INFO  f.Driver - ===== Method : findElement   
+11:22:34.276 [main] INFO  f.Driver - Element By.AndroidUIAutomator: new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().text("公众号")); is found.
+11:22:34.276 [main] INFO  f.Log - Config : OFFICIAL_ACCOUNTS_PAGE_SEARCH_BUTTON_ID = com.tencent.mm:id/jy
+11:22:34.277 [main] INFO  f.Driver - ===== Method : findElement   
+11:22:34.346 [main] INFO  f.Driver - Element By.id: com.tencent.mm:id/jy is found.
+11:22:34.701 [main] INFO  f.Log - page.wechat.WeiXinSearchPage
+11:22:34.714 [main] INFO  f.Log - Config : SEARCH_PAGE_SEARCH_TEXT_BOX_TEXT = 搜索
+11:22:34.714 [main] INFO  f.Driver - ===== Method : scrollToElementByText    搜索
+11:22:34.715 [main] INFO  f.Driver - ===== Method : findElement   
+11:22:35.401 [main] INFO  f.Driver - Element By.AndroidUIAutomator: new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().text("搜索")); is found.
+11:22:36.174 [main] INFO  f.Driver - ===== Method : sendKeys    英语短句每日分享
+11:22:37.544 [Thread-1] INFO  f.Driver - ===== Method : sleep    seconds 3.0
+11:22:42.789 [Thread-1] INFO  f.Driver - ===== Method : sleep    seconds 3.0
+11:22:48.826 [Thread-1] INFO  f.Driver - ===== Method : sleep    seconds 3.0
+11:23:00.248 [main] INFO  f.ConfigUtil - Config : RETRY_COUNT = 0
+11:23:01.306 [Thread-1] INFO  f.Driver - ===== Method : sleep    seconds 3.0
+11:23:02.364 [main] INFO  f.Driver - screenShotName: /Users/justin/Project/AppUIAutomation/d6744554-2019-03-10-11_22_06/screenshot/2019-03-10_11-23-00_failure.png
+11:23:02.366 [main] INFO  f.Log - ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+11:23:02.367 [main] INFO  f.Log - ++++++++++++++++++++++ Test Fail: traverseEnglishQuote
+11:23:07.330 [main] INFO  f.BaseTest - Completed Test : traverseEnglishQuote    
+11:23:07.332 [main] INFO  f.Log - 
+
+1 test case failed:
+11:23:07.332 [main] INFO  f.Log -      traverseEnglishQuote

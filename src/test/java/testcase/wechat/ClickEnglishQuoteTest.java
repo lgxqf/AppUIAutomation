@@ -4,25 +4,36 @@ import framework.BaseTest;
 import framework.Driver;
 import org.testng.annotations.Test;
 import page.wechat.*;
+import static framework.ResourceUtil.getRes;
 
 public class ClickEnglishQuoteTest  extends BaseTest {
     @Test
     public class ShowMyMomentTest extends BaseTest {
-        //打开我的朋友圈
+
         public void traverseEnglishQuote(){
+
+            String name = "英语短句每日分享";
+
             WeiXinMainPage.verify()
                     .clickContactButton();
 
             WeiXinContactPage.verify()
                     .clickOfficialAccountButton();
 
-            OfficialAccountsPage.verify()
-                    .clickAddButton();
+            WeiXinOfficialAccountsPage.verify()
+                    .clickSearchButton();
 
             WeiXinSearchPage.verify()
                     .clickSearchText()
-                    .inputText("英语短句每日分享");
+                    .inputText(name)
+                    .clickFirstSearchResult(getRes("SEARCH_PAGE_SEARCH_RESULT_CLASS"), name);
 
+            WeiXinSubscriptionPage.verify()
+                    .clickHistoryButton();
+
+            WeiXinArticleListPage.verify();
+
+            Driver.getPageSource();
             Driver.sleep(10);
         }
     }

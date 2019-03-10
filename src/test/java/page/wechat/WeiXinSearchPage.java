@@ -3,8 +3,8 @@ package page.wechat;
 import framework.BasePage;
 import framework.Driver;
 import io.appium.java_client.MobileElement;
+import org.openqa.selenium.By;
 
-import javax.swing.*;
 
 public class WeiXinSearchPage extends BasePage {
 
@@ -15,7 +15,7 @@ public class WeiXinSearchPage extends BasePage {
     }
 
     protected  WeiXinSearchPage(){
-        searchTextBox = Driver.findElementByText(getRes("SEARCH_PAGE_SEARCH_TEXT_BOX_ID"));
+        searchTextBox = Driver.findElementByText(getRes("SEARCH_PAGE_SEARCH_TEXT_BOX_TEXT"));
     }
 
     public WeiXinSearchPage clickSearchText(){
@@ -26,5 +26,10 @@ public class WeiXinSearchPage extends BasePage {
     public WeiXinSearchPage inputText(String str){
         Driver.sendKeys(searchTextBox, str);
         return this;
+    }
+
+    public void clickFirstSearchResult(String cls, String text){
+        Driver.findElementByClassAndText(cls, text)
+                .click();
     }
 }

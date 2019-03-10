@@ -13,7 +13,7 @@ public class WeiXinContactPage extends BasePage {
     }
 
     protected  WeiXinContactPage(){
-        officialAccountBtn = Driver.findElementById(getRes("OFFICIAL_ACCOUNTS_TEXT"));
+        officialAccountBtn = Driver.findElementByText(getRes("OFFICIAL_ACCOUNTS_TEXT"));
     }
 
     public void clickOfficialAccountButton(){
