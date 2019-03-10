@@ -12,5 +12,7 @@ public class WeiXinArticleListPage extends BasePage {
 
     protected WeiXinArticleListPage(){
         Driver.findElementByText(getRes("ARTICLE_LIST_PAGE_HISTORY_ARTICLE_TEXT"));
+        Driver.sleep(5);
+        //Driver.findElementByText(getRes("ARTICLE_LIST_PAGE_SEARCH_ARTICLE_TEXT"));
     }
 }

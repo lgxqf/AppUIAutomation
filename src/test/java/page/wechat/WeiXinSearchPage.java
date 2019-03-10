@@ -15,7 +15,7 @@ public class WeiXinSearchPage extends BasePage {
     }
 
     protected  WeiXinSearchPage(){
-        searchTextBox = Driver.findElementByText(getRes("SEARCH_PAGE_SEARCH_TEXT_BOX_TEXT"));
+        searchTextBox = Driver.findElementByText(getRes("SEARCH_TEXT"));
     }
 
     public WeiXinSearchPage clickSearchText(){

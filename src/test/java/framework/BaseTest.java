@@ -26,14 +26,18 @@ public class BaseTest {
 
         BasePage.setDriver(Driver.driver);
 
-        new Thread(new ScreenshotRunnable()).start();
+        if(ConfigUtil.isEnableScreenShot()) {
+            new Thread(new ScreenshotRunnable()).start();
+        }
     }
 
     @AfterMethod
     public void tearDown(Method method){
         subTearDown();
 
-        ScreenshotRunnable.stop();
+        if (ConfigUtil.isEnableScreenShot()) {
+            ScreenshotRunnable.stop();
+        }
 
         Driver.driver.quit();
         Driver.driver = null;

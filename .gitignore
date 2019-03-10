@@ -6,6 +6,8 @@ download/
 node_modules/*
 *.iml
 logs/
+log/
 target/
 log-stash-conf/
 log-stash-conf-backup/
+

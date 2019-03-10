@@ -278,6 +278,18 @@ public final class Driver {
         swipe(startX,startY,endX,endY);
     }
 
+    public static void scrollUp(int x, int y, int diff){
+        log.info(MyLogger.getMethodName());
+
+        int startX = x;
+        int startY = y;
+
+        int endX = x;
+        int endY = y-diff;
+
+        swipe(startX,startY,endX,endY);
+    }
+
     /**
      * 向上滑动，从某个元素的顶部中间位置开始向上滑动一段距离
      * @param yDiff
@@ -607,6 +619,15 @@ public final class Driver {
         }
     }
 
+    public static MobileElement findElementByTextWithoutScroll(String str){
+        if(!isAndroid()){
+            str = "name == " + "\'" + str + "\'" ;
+            return  findElementByNsPredicateIOS(str);
+        }else{
+            return findElement(By.xpath("//*[contains(@text," + "\"" + str + "\"" + ")]"));
+        }
+    }
+
     public static MobileElement findElementContainsText(String str){
         if(!isAndroid()){
             str = "name CONTAINS " + "\'" + str + "\'" ;
@@ -681,6 +702,10 @@ public final class Driver {
      */
     public static MobileElement scrollToElementByText(String text){
         log.info(MyLogger.getMethodName() + " " + text);
+
+        if(!isAndroid()){
+            return Driver.findElementByNsPredicateIOS(text);
+        }
 
         By by = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView("
                 + "new UiSelector().text(\"" + text + "\"));");
@@ -904,8 +929,7 @@ public final class Driver {
     }
 
     public static void clickByCoordinate(int x, int y){
-        log.info(MyLogger.getMethodName());
-        log.info("X: " + x + " Y: " +y );
+        log.info("clickByCoordinate  X: " + x + " Y: " +y );
 
         try {
             TouchAction touchAction = new TouchAction(driver);
