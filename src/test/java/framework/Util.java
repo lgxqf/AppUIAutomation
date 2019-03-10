@@ -1,5 +1,6 @@
 package framework;
 
+
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,47 +16,21 @@ import java.util.*;
 public final class Util {
     public static Logger log = LoggerFactory.getLogger(Util.class);
 
-    public static String getMethodName() {
-        StackTraceElement[] stacktrace = Thread.currentThread().getStackTrace();
-        StackTraceElement e = stacktrace[2];
-        String methodName = e.getMethodName();
 
-        return "===== Method : " + methodName + "   ";
-    }
-
-    public static String multiplyStringValue(String a, String b) {
-        double quantity = Double.valueOf(a);
-        double price = Double.valueOf(b);
-
-        return getStringDoubleFormat(quantity * price);
-    }
-
-    public static String getStringDoubleFormat(String str) {
-        return getStringDoubleFormat(Double.valueOf(str));
-    }
 
     public static String getStringDoubleFormat(Double str) {
         DecimalFormat df = new DecimalFormat("######0.00");
         return df.format(str);
     }
 
+    public static boolean isAndroid() {
+        return ConfigUtil.getUdid().length() < 20;
+    }
+
     public static boolean isAndroid(String udid) {
         return udid.length() < 20;
     }
 
-    public static boolean isAndroid() {
-        String udid = ConfigUtil.getUdid();
-        return udid.length() < 20;
-    }
-
-    public static String getCurrentTimeString(){
-        long timeStamp = System.currentTimeMillis();  //获取当前时间戳,也可以是你自已给的一个随机的或是别人给你的时间戳(一定是long型的数据)
-
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//这个是你要转成后的时间的格式
-        String sd = sdf.format(new Date(timeStamp));   // 时间戳转换成时间
-
-        return sd;
-    }
 
     public static String getDatetime(){
         SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
@@ -72,7 +47,10 @@ public final class Util {
     }
 
     public static String exeCmd(String []commandStr, boolean show) {
-        log.info("Method exeCmd : "  + Arrays.asList(commandStr));
+
+        if(show) {
+            log.info("Method exeCmd : " + Arrays.asList(commandStr));
+        }
 
         BufferedReader br = null;
         String res = "";
@@ -146,7 +124,81 @@ public final class Util {
         return exeCmd(commandStr);
     }
 
+    public static boolean isActivityExist(String udid, String activityName){
+        if(!Util.isAndroid(udid) || activityName == null){
+            return false;
+        }
 
+        String findCmd = getGrep();
+
+        if(Util.isAndroid(udid)){
+            String res = exeCmd("adb -s " + udid + " shell dumpsys activity  | "  + findCmd + "  " + "mFocus");
+
+            res = res.toLowerCase();
+            activityName = activityName.toLowerCase();
+
+            if( res.contains(activityName)){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean isProcessExist(String udid, String processName){
+
+        if(processName == null){
+            return false;
+        }
+
+        processName = processName.toLowerCase();
+
+        boolean processExist = true;
+
+        String findCmd = getGrep();
+
+        //Android
+        if(Util.isAndroid(udid)){
+            String res = exeCmd("adb -s " + udid + " shell ps | "  + findCmd + "  " + processName);
+
+            if( !res.endsWith(processName) && !res.contains(processName + "\n") ){
+                //在进程中未找到包名,说明crash了
+                log.error("==========!!!!!!!!!Android Package: " + processName + " not found in process list.It is crashed.");
+                processExist = false;
+            }
+        }else{
+            //iOS
+            processName = processName.toLowerCase();
+            String reportDir = ConfigUtil.getRootDir() + File.separator + "ips";
+            Util.createDir(reportDir);
+
+            String res = Util.exeCmd("idevicecrashreport -u " +udid + "  " + reportDir).toLowerCase();
+
+            if(res.contains(processName)){
+                //Crash report中找到了ipa的名字，说明crash了
+                processExist = false;
+                log.info("========!!!!!!!!!!!iOS IPA: " + processName + " crashed!!!!");
+            }
+        }
+
+        return processExist;
+    }
+
+    public static void cleanCrashData(String udid, String processName){
+        if(!Util.isAndroid(udid)) {
+            //iOS
+            processName = processName.toLowerCase();
+            String reportDir = ConfigUtil.getRootDir() + File.separator + "ips-clean";
+            Util.createDir(reportDir);
+
+            String res = Util.exeCmd("idevicecrashreport -u " + udid + "  " + reportDir).toLowerCase();
+
+            if (res.contains(processName)) {
+                //Crash report中找到了ipa的名字，说明crash了
+                log.info("========!!!!!!!!!!!iOS IPA: " + processName + " crashed data found before running");
+            }
+        }
+    }
 
     public static void renameFile(String fileName, String newName){
         File file = new File(fileName);
@@ -154,7 +206,18 @@ public final class Util {
         log.info("Crash screenshot: " + newName);
     }
 
+    public static void renameAndCopyCrashFile(String fileName){
+        log.info("renameAndCopyCrashFile");
 
+        if(fileName == null){
+            log.error("renameAndCopyCrashFile() parameter fileName is null!");
+            return;
+        }
+
+        String newPic = fileName.replace(".png","-crash.png");
+        renameFile(fileName,newPic);
+        copyCrashFile(newPic);
+    }
 
     public static boolean createDir(String dir){
         File file = new File(dir);
@@ -166,6 +229,30 @@ public final class Util {
         return file.mkdir();
     }
 
+    public static boolean createDirs(String dir){
+        File file = new File(dir);
+
+        if(file.exists()){
+            return false;
+        }
+
+        return file.mkdirs();
+    }
+
+    public static void copyCrashFile(String src){
+        log.info("copyCrashFile");
+
+        File srcFile = new File(src);
+
+        String dest = ConfigUtil.getRootDir() + File.separator + "crash";
+        Util.createDir(dest);
+        dest = dest + File.separator + srcFile.getName();
+        File newFile = new File(dest);
+
+        if(!newFile.exists()) {
+            copyFile(srcFile, newFile);
+        }
+    }
 
     public static void copyFile(File src, File dest){
         try {
@@ -184,6 +271,8 @@ public final class Util {
         if(Util.isWin()){
             charsetName = "GBK";
         }
+
+        log.info("charset Name is set to : " + charsetName);
 
         try {
             fop = new FileOutputStream(file);
@@ -230,10 +319,6 @@ public final class Util {
         return getFileList(dir,null,false);
     }
 
-    public static List<String> getFileList(String dir,boolean fileNameWithPath){
-        return getFileList(dir,null,fileNameWithPath);
-    }
-
     public static List<String> getFileList(String dir,String filterName, boolean fileNameWithPath){
         List<String> list = new ArrayList<>();
         File file = new File(dir);
@@ -245,6 +330,10 @@ public final class Util {
 
         if(file.exists() && file.isDirectory()){
             String []name = file.list(filter);
+
+            if(name == null){
+                return null;
+            }
             if(fileNameWithPath){
                 for(String str : name){
                     list.add(dir +File.separator + str);
@@ -265,9 +354,8 @@ public final class Util {
         long hour = (between / (60 * 60 * 1000) - day * 24);
         long min = ((between / (60 * 1000)) - day * 24 * 60 - hour * 60);
         long s = (between / 1000 - day * 24 * 60 * 60 - hour * 60 * 60 - min * 60);
-        //long ms = (between - day * 24 * 60 * 60 * 1000 - hour * 60 * 60 * 1000 - min * 60 * 1000 - s * 1000);
-        String timeDifference = hour + "小时" + min + "分" + s + "秒";// + ms + "毫秒";
-        return timeDifference;
+
+        return hour + "小时" + min + "分" + s + "秒";// + ms + "毫秒";;
     }
 
 
@@ -287,7 +375,7 @@ public final class Util {
      * @param bound the upper bound (exclusive), must not equal origin
      * @return a pseudorandom value
      */
-    public static final int internalNextInt(int origin, int bound) {
+    public static int internalNextInt(int origin, int bound) {
         Random random = new Random();
 
         if (origin < bound) {
@@ -311,7 +399,23 @@ public final class Util {
     }
 
     public static boolean isWin(){
-        return System.getProperty("os.name").toLowerCase().contains("windows");
+        return System.getProperty("os.name").toLowerCase().contains("window");
+    }
+
+    public static boolean isDir(String dir){
+        if(dir == null) {
+            return false;
+        }
+
+        boolean isDirectory = false;
+
+        File file = new File(dir);
+
+        if(file.exists() && file.isDirectory()){
+            isDirectory = true;
+        }
+
+        return isDirectory;
     }
 
     public static String getGrep(){
@@ -322,6 +426,34 @@ public final class Util {
         }
 
         return grep;
+    }
+
+    public static String multiplyStringValue(String a, String b) {
+        double quantity = Double.valueOf(a);
+        double price = Double.valueOf(b);
+
+        return getStringDoubleFormat(quantity * price);
+    }
+
+    public static String getStringDoubleFormat(String str) {
+        return getStringDoubleFormat(Double.valueOf(str));
+    }
+
+    public static String getCurrentTimeString(){
+        long timeStamp = System.currentTimeMillis();  //获取当前时间戳,也可以是你自已给的一个随机的或是别人给你的时间戳(一定是long型的数据)
+
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//这个是你要转成后的时间的格式
+        String sd = sdf.format(new Date(timeStamp));   // 时间戳转换成时间
+
+        return sd;
+    }
+
+    public static List<String> getFileList(String dir,boolean fileNameWithPath){
+        return getFileList(dir,null,fileNameWithPath);
+    }
+
+    public static boolean isXpath(String xpath){
+        return xpath.startsWith("//");
     }
 }
 

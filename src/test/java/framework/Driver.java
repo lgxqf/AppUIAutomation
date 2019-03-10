@@ -59,14 +59,14 @@ public final class Driver {
     }
 
     public static void startActivity(String appPackage, String appActivity){
-        log.info(Util.getMethodName() + " " + appActivity);
+        log.info(MyLogger.getMethodName() + " " + appActivity);
 
         Activity activity = new Activity(appPackage,appActivity);
         //activity.setAppWaitActivity(RES.ACTIVITY_MAIN);
         ((AndroidDriver)driver).startActivity(activity);
 
         Driver.sleep(APP_START_WAIT_TIME);
-        log.info(Util.getMethodName() + " Started" );
+        log.info(MyLogger.getMethodName() + " Started" );
     }
 
     public static void setDriver(AppiumDriver driverRef) {
@@ -152,7 +152,7 @@ public final class Driver {
 
 
     public static void sleep(double seconds){
-        log.info(Util.getMethodName() + " seconds " + seconds);
+        log.info(MyLogger.getMethodName() + " seconds " + seconds);
 
         try {
             Thread.sleep((int)(seconds * 1000));
@@ -162,7 +162,7 @@ public final class Driver {
     }
 
     public static void setText(MobileElement elem,String text){
-        log.info(Util.getMethodName() + " " + text);
+        log.info(MyLogger.getMethodName() + " " + text);
 
         elem.click();
         elem.clear();
@@ -170,7 +170,7 @@ public final class Driver {
     }
 
     public static void sendKeys(MobileElement elem,String text){
-        log.info(Util.getMethodName() + " " + text);
+        log.info(MyLogger.getMethodName() + " " + text);
 
         elem.click();
         elem.clear();
@@ -179,7 +179,7 @@ public final class Driver {
     }
 
     public static int getDeviceHeight(){
-        log.info(Util.getMethodName());
+        log.info(MyLogger.getMethodName());
 
         if(isLandscape()){
             return deviceWidth;
@@ -189,7 +189,7 @@ public final class Driver {
     }
 
     public static int getDeviceWidth(){
-        log.info(Util.getMethodName());
+        log.info(MyLogger.getMethodName());
 
         if(isLandscape()){
             return deviceHeight;
@@ -199,7 +199,7 @@ public final class Driver {
     }
 
     public static boolean isLandscape(){
-        log.info(Util.getMethodName());
+        log.info(MyLogger.getMethodName());
 
         boolean ret = false;
         try {
@@ -222,14 +222,14 @@ public final class Driver {
 
 
     public static Dimension getScreenSize() {
-        log.info(Util.getMethodName());
+        log.info(MyLogger.getMethodName());
         Dimension dimensions = driver.manage().window().getSize();
 
         return dimensions;
     }
 
     public static void clickElementCenter(MobileElement elem){
-        log.info(Util.getMethodName());
+        log.info(MyLogger.getMethodName());
 
         Point point = elem.getCenter();
         log.info("Element center : "  + point);
@@ -245,7 +245,7 @@ public final class Driver {
      * @param elem
      */
     public static void  scrollUpFromElemBottomToTop(MobileElement elem) {
-        log.info(Util.getMethodName());
+        log.info(MyLogger.getMethodName());
 
         Point p = elem.getLocation();
         Dimension dim = elem.getSize();
@@ -283,7 +283,7 @@ public final class Driver {
      * @param yDiff
      */
     public static void  scrollUp(MobileElement elem,int yDiff) {
-        log.info(Util.getMethodName());
+        log.info(MyLogger.getMethodName());
 
         Point elemPoint = elem.getLocation();
         Dimension dim = elem.getSize();
@@ -319,15 +319,15 @@ public final class Driver {
      * @param yDiff
      */
     public static void  scrollDown(MobileElement elem,int yDiff) {
-        log.info(Util.getMethodName());
+        log.info(MyLogger.getMethodName());
         scrollUp(elem,(-yDiff));
     }
 
 
     //====================Element Finding===========================
     public static MobileElement findElement(By by,int waitSeconds){
-        //log.info(util.Util.getMethodName() + " " + by.toString());
-        log.info(Util.getMethodName());
+        //log.info(util.MyLogger.getMethodName() + " " + by.toString());
+        log.info(MyLogger.getMethodName());
 
         //WebElement elemME = waitMe.until(ExpectedConditions.visibilityOfElementLocated(by));
         //.ExpectedConditions.elementToBeClickable();
@@ -367,7 +367,7 @@ public final class Driver {
     }
 
     public static List<MobileElement> findElements(By by,int waitSeconds){
-        log.info(Util.getMethodName() + by.toString() );
+        log.info(MyLogger.getMethodName() + by.toString() );
 
         AppiumDriverWait wait = AppiumDriverWait.getInstance(driver,waitSeconds);
 
@@ -412,13 +412,13 @@ public final class Driver {
     }
 
     public static List<MobileElement> findElements(By by){
-        log.info(Util.getMethodName() + by);
+        log.info(MyLogger.getMethodName() + by);
 
         return Driver.findElements(by,(int) ConfigUtil.getDefaultWaitSec());
     }
 
     public static List<MobileElement> findElemsWithoutException(By by){
-        log.info(Util.getMethodName() );
+        log.info(MyLogger.getMethodName() );
 
         List<MobileElement> list = null;
 
@@ -456,7 +456,7 @@ public final class Driver {
      * @return
      */
     public static MobileElement findElemByIdWithoutException(String id, int second){
-        log.info(Util.getMethodName() );
+        log.info(MyLogger.getMethodName() );
 
         MobileElement elem = null;
 
@@ -484,13 +484,13 @@ public final class Driver {
      * @return
      */
     public static boolean elemCheckById(String id){
-        log.info(Util.getMethodName() );
+        log.info(MyLogger.getMethodName() );
 
         return elemCheckById(id, ConfigUtil.getDefaultWaitSec());
     }
 
     public static boolean elemCheckById(String id, int second){
-        log.info(Util.getMethodName() );
+        log.info(MyLogger.getMethodName() );
 
         boolean ret = false;
         MobileElement elem = findElemByIdWithoutException(id,second);
@@ -504,7 +504,7 @@ public final class Driver {
     }
 
     public static MobileElement findElemByTextWithoutException(String text){
-        log.info(Util.getMethodName() );
+        log.info(MyLogger.getMethodName() );
 
         MobileElement elem = null;
         text = "//*[contains(@text,"+ "\"" + text + "\"" + ")]";
@@ -517,7 +517,7 @@ public final class Driver {
         return elem;
     }
     public static boolean elemCheckByText(String text){
-        log.info(Util.getMethodName() );
+        log.info(MyLogger.getMethodName() );
 
         boolean ret = false;
         MobileElement elem = findElemByTextWithoutException(text);
@@ -538,7 +538,7 @@ public final class Driver {
      * @return
      */
     public static MobileElement scrollToElementByIdWithoutException(String id){
-        log.info(Util.getMethodName() );
+        log.info(MyLogger.getMethodName() );
 
         MobileElement elem = null;
 
@@ -564,7 +564,7 @@ public final class Driver {
      * @return
      */
     public static boolean elemCheckByScrollToId(String id){
-        log.info(Util.getMethodName() );
+        log.info(MyLogger.getMethodName() );
 
         boolean ret = false;
         MobileElement elem = scrollToElementByIdWithoutException(id);
@@ -578,7 +578,7 @@ public final class Driver {
     }
 
     public static MobileElement findElementByXpath(String xPath){
-        log.info(Util.getMethodName() + xPath);
+        log.info(MyLogger.getMethodName() + xPath);
         return findElement(By.xpath(xPath));
     }
 
@@ -661,7 +661,7 @@ public final class Driver {
      * @return
      */
     public static MobileElement scrollToElementById(String id){
-        log.info(Util.getMethodName());
+        log.info(MyLogger.getMethodName());
 
         if(!isAndroid()){
             return Driver.findElementByNsPredicateIOS(id);
@@ -680,7 +680,7 @@ public final class Driver {
      * @return
      */
     public static MobileElement scrollToElementByText(String text){
-        log.info(Util.getMethodName() + " " + text);
+        log.info(MyLogger.getMethodName() + " " + text);
 
         By by = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView("
                 + "new UiSelector().text(\"" + text + "\"));");
@@ -688,7 +688,7 @@ public final class Driver {
     }
 
     public static AppiumDriver prepareForAppiumIOS(String bundleId,String uuid, String appiumPort, String wdaLocalPort) throws Exception {
-        log.info(Util.getMethodName());
+        log.info(MyLogger.getMethodName());
 
         ConfigUtil.setUdid(uuid);
 
@@ -725,7 +725,7 @@ public final class Driver {
     }
 
     public static AppiumDriver prepareForAppiumAndroid(String appPackage,String appActivity,String udid, String port) throws Exception {
-        log.info(Util.getMethodName());
+        log.info(MyLogger.getMethodName());
 
         log.info("appPackage " + appPackage);
 
@@ -857,8 +857,15 @@ public final class Driver {
         //[ro.build.version.sdk]: [25]
         String res = Util.exeCmd(cmdList);
 
-        if(res == null ||res == ""){
-            log.error("Fail to get sdk version!!!!");
+        if(res == null ||res.length() < 5){
+            log.error("\n\nERROR:Fail to get sdk version!!!! The specified device udid : "+ udid + " is not found \n");
+            String deviceList = Util.exeCmd("adb devices",false);
+            String output ="List of devices attached";
+            if(deviceList.length() < output.length() + 1){
+                log.error("ERROR: No devices are connected!!!\n");
+            }else{
+                log.error("Connected devices are : " + deviceList +"\n");
+            }
         }else{
             int length = res.length();
             int index = res.indexOf(":");
@@ -906,7 +913,7 @@ public final class Driver {
     }
 
     public static void clickByCoordinate(int x, int y){
-        log.info(Util.getMethodName());
+        log.info(MyLogger.getMethodName());
         log.info("X: " + x + " Y: " +y );
 
         try {
@@ -919,7 +926,7 @@ public final class Driver {
     }
 
     public static void pinch(int headX, int headY, int tailX , int tailY, boolean isUnpinch){
-        log.info(Util.getMethodName());
+        log.info(MyLogger.getMethodName());
 
         int lineCenterX = (headX + tailX)/2;
         int lineCenterY = (headY + tailY)/2;
@@ -993,7 +1000,7 @@ public final class Driver {
     }
 
     public static void drag(int headX, int headY, int tailX , int tailY){
-        log.info(Util.getMethodName());
+        log.info(MyLogger.getMethodName());
 
         if(headY < 200){
             headY = 200;
@@ -1020,7 +1027,7 @@ public final class Driver {
     }
 
     public static void doubleClickByCoordinate(int x, int y) {
-        log.info(Util.getMethodName());
+        log.info(MyLogger.getMethodName());
         log.info("Double click X: " + x + " Y: " +y );
 
         try {
@@ -1057,7 +1064,7 @@ public final class Driver {
     }
 
     public static void rotateToLandscape(boolean landscape){
-        log.info(Util.getMethodName());
+        log.info(MyLogger.getMethodName());
 
         log.info(driver.getOrientation().toString());
 
@@ -1075,7 +1082,7 @@ public final class Driver {
     }
 
     public static void  swipeVertical(boolean scrollDown, StringBuilder builder) {
-        log.info(Util.getMethodName());
+        log.info(MyLogger.getMethodName());
 
         Dimension dimensions = driver.manage().window().getSize();
         log.info("Screen size :" +dimensions);
@@ -1110,7 +1117,7 @@ public final class Driver {
     }
 
     public static void swipeHorizontally(boolean leftToRight) {
-        log.info(Util.getMethodName());
+        log.info(MyLogger.getMethodName());
 
         Dimension dimensions = driver.manage().window().getSize();
         log.info("Screen size :" +dimensions);
