@@ -35,6 +35,14 @@ public class ClickEnglishQuoteTest  extends BaseTest {
             int x = Driver.getDeviceWidth()/2;
             int y = Driver.getDeviceHeight() - 100;
 
+            int adClickedCount = 0;
+            int articleFailureCount = 0;
+            int adFailureCount = 0;
+
+            boolean articleClicked;
+
+            int distance = 75;
+            int step = 80;
 
             while(true){
                 WeiXinArticleListPage.verify();
@@ -43,51 +51,48 @@ public class ClickEnglishQuoteTest  extends BaseTest {
                 Driver.scrollUp(x, y, 200);
                 Driver.sleep(5);
 
-                int distance = 75;
-                int step = 100;
-
-                //Click at most 3 times till article is clicked.
-                boolean articleClicked;
-
-                for(int i = 0; i<3 ; i++) {
-                    Driver.clickByCoordinate(x, y - distance);
-                    log.info("Trying to click Article");
-
-                    articleClicked = false;
-
-                    try {
-                        WeiXinArticlePage.verify()
-                                .clickAD();
-
-                        //Driver.sleep(10);
-                        i=3;
-                        articleClicked = true;
-                    }catch (Exception e){
-                        //log.info("Fail to click Article!!!");
-                        distance = distance + step;
-                    }finally {
-                        boolean containEnglishQuote = Driver.getPageSource().contains(getRes("ENGLISH_QUOTE_NAME_TEXT"));
-
-                        if(articleClicked && !containEnglishQuote){
-                            log.info("Succeed in clicking AD. Pressing back twice");
-                            Driver.pressBack();
-                            Driver.pressBack();
-                            continue;
-                        }
-
-                        if(articleClicked && containEnglishQuote){
-                            log.error("Fail to click AD!!! Press back once");
-                            Driver.pressBack();
-                        }
 
 
-                        if(!articleClicked){
-                            log.info("Fail to clicked article!!! Don't press back");
-                        }
+                log.info("Trying to click Article");
+                Driver.clickByCoordinate(x, y - distance);
 
-                        Driver.takeScreenShot();
-                    }
+                //Make sure article is clicked
+                try {
+                    WeiXinArticlePage.verify()
+                            .clickAD();
+                    distance = 75;
+                }catch (Exception e){
+                    log.info("Fail to click Article!!!");
+                    distance = distance + step;
+                    articleFailureCount ++;
+                    Driver.takeScreenShot();
+                    continue;
                 }
+
+                boolean containEnglishQuote = Driver.getPageSource().contains(getRes("ENGLISH_QUOTE_NAME_TEXT"));
+
+                //Check if enter into AD Page
+                if(containEnglishQuote){
+                    Driver.takeScreenShot();
+                    Driver.pressBack();
+                    adFailureCount ++;
+                    continue;
+                }
+
+                //Enter into AD Page, do some scroll
+                for(int i = 0 ; i <2 ; i++) {
+                    Driver.sleep(5);
+                    //Driver.sleep(rnd.nextInt(maxSleepTime));
+                    Driver.scrollUp(x, y, y);
+                }
+
+                log.info("====Succeed in clicking AD. Press back twice");
+                Driver.pressBack();
+                Driver.pressBack();
+                adClickedCount ++;
+
+                log.info("AD clicked: " + adClickedCount + "    Article Failure clicked:" +articleFailureCount + "  AD Failure clicked:" + adFailureCount);
+
             }
 
             //Test end
