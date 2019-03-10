@@ -11,7 +11,7 @@ public class ScreenshotRunnable implements Runnable {
     public void run(){
         int sleepTime = ConfigUtil.getScreenShotInterval();
         while (!stop){
-            Driver.takeScreenShot(true);
+            Driver.takeScreenShot(false);
             Driver.sleep(sleepTime);
         }
     }

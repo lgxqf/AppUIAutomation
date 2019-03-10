@@ -832,6 +832,11 @@ public final class Driver {
         Driver.sleep(1);
     }
 
+    public static void pressBackAndTakeScreenShot(){
+        pressBack();
+        takeScreenShot();
+    }
+
     public static void pressKeyCode(AndroidKey code){
         ((AndroidDriver) driver).pressKey(new KeyEvent(code));
     }

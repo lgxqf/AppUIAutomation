@@ -4,10 +4,15 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.support.PageFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.time.Duration;
 
 
 public class BasePage {
+    public static Logger log = LoggerFactory.getLogger(BasePage.class);
+
     protected static AppiumDriver<MobileElement> driver;
 
     public BasePage() {
