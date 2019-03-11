@@ -32,7 +32,9 @@ public class ClickEnglishQuoteTest  extends BaseTest {
 
             Random rnd = new Random();
 
-            while(totalCount <=5){
+            while(totalCount < 5){
+
+                log.info("+++===+++=== AD clicked: " + adClickedCount + "    Article Failure clicked:" +articleFailureCount + "  AD Failure clicked:" + adFailureCount);
 
                 try {
                     WeiXinArticleListPage.verify();
@@ -73,6 +75,7 @@ public class ClickEnglishQuoteTest  extends BaseTest {
 
                 //Check if enter into AD Page
                 if(containEnglishQuote){
+                    log.info("====Fail to click AD");
                     //Driver.takeScreenShot();
                     Driver.pressBack();
                     adFailureCount ++;
@@ -80,7 +83,7 @@ public class ClickEnglishQuoteTest  extends BaseTest {
                 }
 
                 //Enter into AD Page, do some scroll
-                Driver.sleep(5);
+                Driver.sleep(new Random().nextInt(3) + 3);
                 Driver.takeScreenShot();
                 Driver.scrollUp(x, y, y);
 
@@ -88,8 +91,6 @@ public class ClickEnglishQuoteTest  extends BaseTest {
                 Driver.pressBack();
                 Driver.pressBack();
                 adClickedCount ++;
-
-                log.info("+++===+++=== AD clicked: " + adClickedCount + "    Article Failure clicked:" +articleFailureCount + "  AD Failure clicked:" + adFailureCount);
             }
 
             log.info("+++===+++=== AD clicked: " + adClickedCount + "    Article Failure clicked:" +articleFailureCount + "  AD Failure clicked:" + adFailureCount);
@@ -118,11 +119,3 @@ public class ClickEnglishQuoteTest  extends BaseTest {
 
     }
 }
-
-
-
-//                for(int i = 0 ; i <2 ; i++) {
-//                    Driver.sleep(5);
-//                    Driver.sleep(rnd.nextInt(WeiXinArticlePage.MAX_RANDOM_SLEEP_TIME));
-//                    Driver.scrollUp(x, y, y);
-//                }

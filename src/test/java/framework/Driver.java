@@ -443,7 +443,7 @@ public final class Driver {
     }
 
     public static MobileElement findElement(By by){
-        return  findElement(by,(int) ConfigUtil.getDefaultWaitSec());
+        return  findElement(by, ConfigUtil.getDefaultWaitSec());
     }
 
     public static MobileElement findElementWithoutException(By by){
