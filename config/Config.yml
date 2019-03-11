@@ -6,7 +6,8 @@ GENERAL:
   # 每隔多少秒查找一次元素
   DEFAULT_POLLING_INTERVAL_SEC: 6
   # 用例运行失败时最多重试运行次数
-  RETRY_COUNT: 0
+  RETRY_COUNT: 3 .
+
   # 运行时每隔 SCREENSHOT_INTERVAL 截屏并保存
   ENABLE_SCREENSHOT: false
   # 截屏间隔

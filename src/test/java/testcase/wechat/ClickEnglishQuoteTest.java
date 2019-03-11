@@ -42,18 +42,26 @@ public class ClickEnglishQuoteTest  extends BaseTest {
             int articleFailureCount = 0;
             int adFailureCount = 0;
 
-            boolean articleClicked;
-
             int distance = 75;
             int step = 80;
 
-            while(true){
+            int totalCount = adClickedCount + adFailureCount;
+
+            Random rnd = new Random();
+
+            while(totalCount <=5){
                 WeiXinArticleListPage.verify();
 
                 //Scroll to show old articles to be clicked
-                Driver.scrollUp(x, y, 200);
-                Driver.sleep(5);
+                int loop = rnd.nextInt(5);
 
+                log.info("Scroll count is " + loop);
+
+                for(int i = 0; i< loop ; i++){
+                    Driver.scrollUp(x, y, 500);
+                }
+                //Driver.scrollUp(x, y, 200);
+                Driver.sleep(5);
 
 
                 log.info("Trying to click Article");
@@ -82,13 +90,14 @@ public class ClickEnglishQuoteTest  extends BaseTest {
                     continue;
                 }
 
-                Random rnd = new Random();
                 //Enter into AD Page, do some scroll
-                for(int i = 0 ; i <2 ; i++) {
-                    Driver.sleep(5);
-                    Driver.sleep(rnd.nextInt(WeiXinArticlePage.MAX_RANDOM_SLEEP_TIME));
-                    Driver.scrollUp(x, y, y);
-                }
+                Driver.scrollUp(x, y, y);
+
+//                for(int i = 0 ; i <2 ; i++) {
+//                    Driver.sleep(5);
+//                    Driver.sleep(rnd.nextInt(WeiXinArticlePage.MAX_RANDOM_SLEEP_TIME));
+//                    Driver.scrollUp(x, y, y);
+//                }
 
                 log.info("====Succeed in clicking AD. Press back twice");
                 Driver.pressBack();
@@ -96,7 +105,6 @@ public class ClickEnglishQuoteTest  extends BaseTest {
                 adClickedCount ++;
 
                 log.info("+++===+++===t AD clicked: " + adClickedCount + "    Article Failure clicked:" +articleFailureCount + "  AD Failure clicked:" + adFailureCount);
-
             }
 
             //Test end
