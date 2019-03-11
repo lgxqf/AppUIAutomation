@@ -9,9 +9,8 @@ import java.util.Random;
 
 import static framework.ResourceUtil.getRes;
 
+@Test
 public class ClickEnglishQuoteTest  extends BaseTest {
-    @Test
-    public class ShowMyMomentTest extends BaseTest {
 
         //运行前需先手动关注公从号 "英语短句每日分享"
         public void traverseEnglishQuote(){
@@ -95,7 +94,6 @@ public class ClickEnglishQuoteTest  extends BaseTest {
 
             log.info("+++===+++=== AD clicked: " + adClickedCount + "    Article Failure clicked:" +articleFailureCount + "  AD Failure clicked:" + adFailureCount);
         }
-    }
 
     protected void enterArticleList(){
         String name = "英语短句每日分享";
