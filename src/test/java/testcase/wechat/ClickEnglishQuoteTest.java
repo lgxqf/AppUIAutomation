@@ -27,12 +27,9 @@ public class ClickEnglishQuoteTest  extends BaseTest {
             int distance = 75;
             int step = 80;
 
-            int totalCount = adClickedCount + adFailureCount;
-
             Random rnd = new Random();
 
-            while(totalCount < 5){
-
+            while(adClickedCount + adFailureCount < 5){
                 log.info("+++===+++=== AD clicked: " + adClickedCount + "    Article Failure clicked:" +articleFailureCount + "  AD Failure clicked:" + adFailureCount);
 
                 try {
