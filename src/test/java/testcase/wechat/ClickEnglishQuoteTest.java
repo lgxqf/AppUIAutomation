@@ -16,24 +16,7 @@ public class ClickEnglishQuoteTest  extends BaseTest {
         //运行前需先手动关注公从号 "英语短句每日分享"
         public void traverseEnglishQuote(){
 
-            String name = "英语短句每日分享";
-
-            WeiXinMainPage.verify()
-                    .clickContactButton();
-
-            WeiXinContactPage.verify()
-                    .clickOfficialAccountButton();
-
-            WeiXinOfficialAccountsPage.verify()
-                    .clickSearchButton();
-
-            WeiXinSearchPage.verify()
-                    .clickSearchText()
-                    .inputText(name)
-                    .clickFirstSearchResult(getRes("SEARCH_PAGE_SEARCH_RESULT_CLASS"), name);
-
-            WeiXinSubscriptionPage.verify()
-                    .clickHistoryButton();
+            enterArticleList();
 
             int x = Driver.getDeviceWidth()/2;
             int y = Driver.getDeviceHeight() - 100;
@@ -50,10 +33,17 @@ public class ClickEnglishQuoteTest  extends BaseTest {
             Random rnd = new Random();
 
             while(totalCount <=5){
-                WeiXinArticleListPage.verify();
+
+                try {
+                    WeiXinArticleListPage.verify();
+
+                }catch (Exception e){
+                    Driver.appRelaunch();
+                    enterArticleList();
+                }
 
                 //Scroll to show old articles to be clicked
-                int loop = rnd.nextInt(5);
+                int loop = rnd.nextInt(10);
 
                 log.info("Scroll count is " + loop);
 
@@ -62,7 +52,6 @@ public class ClickEnglishQuoteTest  extends BaseTest {
                 }
                 //Driver.scrollUp(x, y, 200);
                 Driver.sleep(5);
-
 
                 log.info("Trying to click Article");
                 Driver.clickByCoordinate(x, y - distance);
@@ -76,7 +65,7 @@ public class ClickEnglishQuoteTest  extends BaseTest {
                     log.info("Fail to click Article!!!");
                     distance = distance + step;
                     articleFailureCount ++;
-                    Driver.takeScreenShot();
+                    //Driver.takeScreenShot();
                     continue;
                 }
 
@@ -84,30 +73,56 @@ public class ClickEnglishQuoteTest  extends BaseTest {
 
                 //Check if enter into AD Page
                 if(containEnglishQuote){
-                    Driver.takeScreenShot();
+                    //Driver.takeScreenShot();
                     Driver.pressBack();
                     adFailureCount ++;
                     continue;
                 }
 
                 //Enter into AD Page, do some scroll
+                Driver.sleep(5);
+                Driver.takeScreenShot();
                 Driver.scrollUp(x, y, y);
-
-//                for(int i = 0 ; i <2 ; i++) {
-//                    Driver.sleep(5);
-//                    Driver.sleep(rnd.nextInt(WeiXinArticlePage.MAX_RANDOM_SLEEP_TIME));
-//                    Driver.scrollUp(x, y, y);
-//                }
 
                 log.info("====Succeed in clicking AD. Press back twice");
                 Driver.pressBack();
                 Driver.pressBack();
                 adClickedCount ++;
 
-                log.info("+++===+++===t AD clicked: " + adClickedCount + "    Article Failure clicked:" +articleFailureCount + "  AD Failure clicked:" + adFailureCount);
+                log.info("+++===+++=== AD clicked: " + adClickedCount + "    Article Failure clicked:" +articleFailureCount + "  AD Failure clicked:" + adFailureCount);
             }
 
-            //Test end
+            log.info("+++===+++=== AD clicked: " + adClickedCount + "    Article Failure clicked:" +articleFailureCount + "  AD Failure clicked:" + adFailureCount);
         }
     }
+
+    protected void enterArticleList(){
+        String name = "英语短句每日分享";
+
+        WeiXinMainPage.verify()
+                .clickContactButton();
+
+        WeiXinContactPage.verify()
+                .clickOfficialAccountButton();
+
+        WeiXinOfficialAccountsPage.verify()
+                .clickSearchButton();
+
+        WeiXinSearchPage.verify()
+                .clickSearchText()
+                .inputText(name)
+                .clickFirstSearchResult(getRes("SEARCH_PAGE_SEARCH_RESULT_CLASS"), name);
+
+        WeiXinSubscriptionPage.verify()
+                .clickHistoryButton();
+
+    }
 }
+
+
+
+//                for(int i = 0 ; i <2 ; i++) {
+//                    Driver.sleep(5);
+//                    Driver.sleep(rnd.nextInt(WeiXinArticlePage.MAX_RANDOM_SLEEP_TIME));
+//                    Driver.scrollUp(x, y, y);
+//                }

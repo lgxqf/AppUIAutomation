@@ -24,8 +24,6 @@ public class BaseTest {
             Driver.driver = Driver.prepareForAppiumIOS(ConfigUtil.getBundleId(),udid,port,wdaPort);
         }
 
-        BasePage.setDriver(Driver.driver);
-
         if(ConfigUtil.isEnableScreenShot()) {
             new Thread(new ScreenshotRunnable()).start();
         }

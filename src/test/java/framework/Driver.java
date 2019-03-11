@@ -41,9 +41,8 @@ public final class Driver {
         log.info("Restart app...");
 
         try {
-            //TODO: driver.quit() is needed or not?
-            driver.quit();
-
+            //driver.quit();
+            driver = null;
             if(isAndroid()) {
                 Driver.prepareForAppiumAndroid(ConfigUtil.getPackageName(), ConfigUtil.getActivityName(), ConfigUtil.getUdid(), ConfigUtil.getPort());
             }else{
@@ -736,16 +735,9 @@ public final class Driver {
         String url = "http://" + ConfigUtil.getServerIP() + ":" + appiumPort + "/wd/hub";
         log.info(url);
         driver = new IOSDriver(new URL(url), capabilities);
-        setWindowSize();
         log.info("Server started.");
 
-//        if(false == isMicroProgramme(bundleId)){
-//            driver = null;
-//            log.info("Micro programme failed to start.");
-//        }else {
-//            log.info("Server started.");
-//        }
-
+        setWindowSizeAndDriver();
         return driver;
     }
 
@@ -776,7 +768,7 @@ public final class Driver {
         log.info(url);
         driver = new AndroidDriver(new URL(url), capabilities);
 
-        setWindowSize();
+        setWindowSizeAndDriver();
         return driver;
     }
 
@@ -794,7 +786,6 @@ public final class Driver {
 
                 Driver.findElementByText("小程序").click();
                 Driver.findElementByText(ConfigUtil.getStringValue(ConfigUtil.MINI_PROGRAM_NAME)).click();
-
             }
 
             ret = true;
@@ -806,12 +797,14 @@ public final class Driver {
         return ret;
     }
 
-    private static void setWindowSize(){
+    private static void setWindowSizeAndDriver(){
         deviceHeight= driver.manage().window().getSize().getHeight();
         deviceWidth = driver.manage().window().getSize().getWidth();
 
         log.info("Window width " + deviceWidth);
         log.info("Window height " + deviceHeight);
+
+        BasePage.setDriver(Driver.driver);
     }
 
     public static void pressBack(StringBuilder builder){
