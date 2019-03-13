@@ -54,7 +54,15 @@ public class ClickEnglishQuoteTest  extends BaseTest {
                 log.info("Trying to click Article");
                 Driver.clickByCoordinate(x, y - distance);
 
-                //Make sure article is clicked
+                //Check if article is clicked
+                try {
+                    WeiXinArticlePage.verify();
+                }catch (Exception e ){
+                    //If fail to click article,try to click other article
+                    Driver.clickByCoordinate(x, y - distance - 200);
+                }
+
+                //Again check if article is clicked
                 try {
                     WeiXinArticlePage.verify()
                             .clickAD();
@@ -63,7 +71,6 @@ public class ClickEnglishQuoteTest  extends BaseTest {
                     log.info("Fail to click Article!!!");
                     distance = distance + step;
                     articleFailureCount ++;
-                    //Driver.takeScreenShot();
                     continue;
                 }
 

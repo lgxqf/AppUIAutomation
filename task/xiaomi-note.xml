@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="TestSuite">
+    <listeners>
+        <listener class-name="framework.TestListener" />
+    </listeners>
+
+    <test name="XIAOMI-Note">
+        <parameter name = "port" value = "4723"/>
+        <parameter name = "udid" value = "776490b"/>
+        <parameter name = "wdaPort" value = "8001"/>
+        <classes>
+            <class name="testcase.wechat.ClickEnglishQuoteTest"/>
+        </classes>
+    </test>
+</suite>
