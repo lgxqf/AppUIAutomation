@@ -2,6 +2,8 @@
 
 一个基于Appium 1.8.1、TestNG，Page Object模式开发的UI自动化测试框架
 
+本人对公司和个人提供APP UI自动化培训，有意者请加QQ 40690263
+
 ![](https://github.com/lgxqf/AppUIAutomation/blob/master/doc/structure.png)
 ![](/uploads/photo/2018/fc861afc-93c7-4fab-aa59-b5050886e600.png!large)
 ![](http://10.2.250.21/wiki/window/raw/master/AppUIAutomation/doc/structure.png)
