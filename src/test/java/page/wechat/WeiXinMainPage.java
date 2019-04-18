@@ -12,9 +12,9 @@ public class WeiXinMainPage extends BasePage {
     }
 
     protected  WeiXinMainPage(){
-        Driver.findElementByText(getRes("MAIN_PAGE_WEIXIN_TEXT"));
-        Driver.findElementByText(getRes("MAIN_PAGE_CONTACT_TEXT"));
-        Driver.findElementByText(getRes("MAIN_PAGE_DISCOVER_TEXT"));
+        Driver.findElementByTextWithoutScroll(getRes("MAIN_PAGE_WEIXIN_TEXT"));
+        Driver.findElementByTextWithoutScroll(getRes("MAIN_PAGE_CONTACT_TEXT"));
+        Driver.findElementByTextWithoutScroll(getRes("MAIN_PAGE_DISCOVER_TEXT"));
     }
 
     public WeiXinMainPage clickMeButton(){
@@ -24,7 +24,7 @@ public class WeiXinMainPage extends BasePage {
     }
 
     public WeiXinMainPage clickContactButton(){
-        Driver.findElementByText(getRes("MAIN_PAGE_CONTACT_TEXT"))
+        Driver.findElementByTextWithoutScroll(getRes("MAIN_PAGE_CONTACT_TEXT"))
                 .click();
         return this;
     }
